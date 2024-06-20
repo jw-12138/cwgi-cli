@@ -1,4 +1,4 @@
-import {onMount} from 'solid-js'
+import {createEffect, on, onMount} from 'solid-js'
 import useStore from './components/Store.jsx'
 import Loading from './components/Loading.jsx'
 import LoginPanel from './components/LoginPanel.jsx'
@@ -10,8 +10,11 @@ import './style/main.scss'
 const [store, setStore] = useStore()
 
 export default function Comments(props) {
-  let commentDom
   setStore('githubIssueId', props.githubIssueId)
+
+  createEffect(on(() => store.githubIssueId, () => {
+    setStore('comments', [])
+  }))
 
   /**
    * check login status

@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (import.meta.env.DEV === true) {
     init({
       githubIssueId: 82,
-      darkMode: true
+      darkMode: false
     })
   }
 })
