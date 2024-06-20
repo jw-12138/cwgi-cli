@@ -13,6 +13,7 @@ export default defineConfig({
       entry: 'src/main.jsx',
       name: '_CWGI',
       formats: ['iife', 'es']
-    }
+    },
+    sourcemap: true
   }
 })
