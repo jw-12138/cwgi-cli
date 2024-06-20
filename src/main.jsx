@@ -4,9 +4,10 @@ import CommentSystem from './CommentSystem.jsx'
 export function init(options) {
   let root = document.getElementById('cwgi_box')
   root.innerHTML = ''
+
   render(() => <CommentSystem githubIssueId={options.githubIssueId || false}/>, root)
 
-  if (!options.darkMode || options.darkMode === 'auto') {
+  if (options.darkMode === undefined) {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       root.classList.add('dark')
     }
@@ -21,7 +22,7 @@ export function init(options) {
     })
   }
 
-  if (options.darkMode === 'dark') {
+  if (options.darkMode === true) {
     root.classList.add('dark')
   }
 }
@@ -29,7 +30,8 @@ export function init(options) {
 document.addEventListener('DOMContentLoaded', () => {
   if (import.meta.env.DEV === true) {
     init({
-      githubIssueId: 82
+      githubIssueId: 82,
+      darkMode: true
     })
   }
 })
