@@ -76,7 +76,7 @@ function inputAndPreview() {
         ></textarea>
 
         <div class="pt-2 text-xs dark:text-neutral-400 text-neutral-500 leading-5 text-center">
-          Powered by <a href="">CWGI</a>
+          Powered by <a href="https://github.com/jw-12138/cwgi-cli" target="_blank">CWGI</a>
         </div>
 
         <div class="text-center mt-8 flex justify-center" classList={{
