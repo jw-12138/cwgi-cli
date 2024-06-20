@@ -12,7 +12,7 @@ export default defineConfig({
     lib: {
       entry: 'src/main.jsx',
       name: '_CWGI',
-      formats: ['iife', 'es', 'umd']
+      formats: ['iife', 'es']
     }
   }
 })
