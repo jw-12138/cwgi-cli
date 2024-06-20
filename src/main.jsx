@@ -2,8 +2,28 @@ import {render} from 'solid-js/web'
 import CommentSystem from './CommentSystem.jsx'
 
 export function init(options) {
-  document.getElementById('cwgi_box').innerHTML = ''
-  render(() => <CommentSystem githubIssueId={options.githubIssueId || false}/>, document.getElementById('cwgi_box'))
+  let root = document.getElementById('cwgi_box')
+  root.innerHTML = ''
+  render(() => <CommentSystem githubIssueId={options.githubIssueId || false}/>, root)
+
+  if (!options.darkMode || options.darkMode === 'auto') {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      root.classList.add('dark')
+    }
+
+    // check dark mode change
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (e.matches) {
+        root.classList.add('dark')
+      } else {
+        root.classList.remove('dark')
+      }
+    })
+  }
+
+  if (options.darkMode === 'dark') {
+    root.classList.add('dark')
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,10 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     init({
       githubIssueId: 82
     })
-
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.getElementsByTagName('html')[0].style.background = 'rgb(23, 23, 23)'
-    }
   }
 })
 
