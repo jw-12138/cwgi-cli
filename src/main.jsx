@@ -2,6 +2,7 @@ import {render} from 'solid-js/web'
 import CommentSystem from './CommentSystem.jsx'
 
 export function init(options) {
+  document.getElementById(options.domId || 'cwgi_box').innerHTML = ''
   render(() => <CommentSystem githubIssueId={options.githubIssueId || false}/>, document.getElementById(options.domId || 'cwgi_box'))
 }
 
