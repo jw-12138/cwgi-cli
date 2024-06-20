@@ -1,11 +1,16 @@
 import {render} from 'solid-js/web'
 import CommentSystem from './CommentSystem.jsx'
 
-export function init(options) {
-  let root = document.getElementById('cwgi_box')
-  root.innerHTML = ''
+let dispose = null
 
-  render(() => <CommentSystem githubIssueId={options.githubIssueId || false}/>, root)
+export function init(options) {
+  if (dispose) {
+    dispose()
+  }
+
+  const root = document.getElementById('cwgi_box')
+
+  dispose = render(() => <CommentSystem githubIssueId={options.githubIssueId || false}/>, root)
 
   if (options.darkMode === undefined) {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
