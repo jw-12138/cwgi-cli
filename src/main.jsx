@@ -13,7 +13,14 @@ export function init(githubIssueId = false, options = {}) {
     dispose()
   }
 
-  const root = document.getElementById('cwgi_box')
+  let root
+
+  try {
+    root = document.getElementById('cwgi_box')
+  } catch (e) {
+    console.error('failed to get root element #cwgi_box, does it exist?')
+    return false
+  }
 
   dispose = render(() => <CommentSystem githubIssueId={githubIssueId} options={options}/>, root)
 
