@@ -5,7 +5,7 @@
 ## Features
 
 - Fast to load (~ 25Kb after gzip)
-- Naturally Safe
+- Naturally came with GitHub
   - XSS free
   - Easy notifications
   - Easy management / moderation
