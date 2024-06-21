@@ -101,7 +101,6 @@ function CommentList() {
 
     // get all reactions for loaded comments here
     for (let i = store.comments.length - newlyAddedCommentsCount(); i < store.comments.length; i++) {
-      console.log(i)
       setStore('shouldListReactionsForCommentId', store.comments[i].id)
 
       if (store.comments[i].body) {
@@ -132,13 +131,13 @@ function CommentList() {
   }))
 
   return <>
-    <section data-name="comments" class="pt-8">
-      <div class="text-center text-base font-black italic" classList={{
-        hidden: store.gettingComments && store.comments.length === 0
+    <section data-name="comments" class="cwgi-pt-8">
+      <div class="cwgi-text-center cwgi-text-base cwgi-font-black cwgi-italic" classList={{
+        'cwgi-hidden': store.gettingComments && store.comments.length === 0
       }}>
         <span classList={{
-          hidden: store.comments.length !== 0
-        }} class="font-normal text-sm opacity-80 not-italic">
+          'cwgi-hidden': store.comments.length !== 0
+        }} class="cwgi-font-normal cwgi-text-sm cwgi-opacity-80 cwgi-not-italic">
           No comments for now
         </span>
       </div>
@@ -152,18 +151,18 @@ function CommentList() {
       }
 
       <div classList={{
-        'hidden': store.gettingComments || newlyAddedCommentsCount() < per_page
+        'cwgi-hidden': store.gettingComments || newlyAddedCommentsCount() < per_page
       }}>
-        <button class="bg-black dark:bg-white rounded-3xl px-4 py-2 text-xs text-white dark:text-black mx-auto block" onClick={() => {
+        <button class="cwgi-bg-black dark:cwgi-bg-white cwgi-rounded-3xl cwgi-px-4 cwgi-py-2 cwgi-text-xs cwgi-text-white dark:cwgi-text-black cwgi-mx-auto cwgi-block" onClick={() => {
           setCurrentPage(() => currentPage() + 1)
         }}>Load More</button>
       </div>
     </section>
 
-    {store.gettingComments && <section data-name="loading screen" class="pt-8">
-      <div class="flex text-sm justify-center items-center">
+    {store.gettingComments && <section data-name="loading screen" class="cwgi-pt-8">
+      <div class="cwgi-flex cwgi-text-sm cwgi-justify-center cwgi-items-center">
         <div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-loader-2 animate-spin" width="24"
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-loader-2 cwgi-animate-spin" width="24"
                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>

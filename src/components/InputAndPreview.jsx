@@ -59,7 +59,7 @@ function inputAndPreview() {
   }
 
   return <>
-    <section data-name="textarea" class="pt-8">
+    <section data-name="textarea" class="cwgi-pt-8">
 
       <form action="javascript:"
             onSubmit={sendComment}>
@@ -67,7 +67,7 @@ function inputAndPreview() {
         <textarea
           disabled={store.gettingUser || !store.isUserLoggedIn}
           id="comment_textarea"
-          class="rounded-2xl block px-4 py-4 font-mono border-none focus:shadow-2xl dark:bg-neutral-800 bg-zinc-100 w-full resize-y min-h-[6rem] text-sm rounded-br-[6px]"
+          class="cwgi-rounded-2xl cwgi-block cwgi-px-4 cwgi-py-4 cwgi-font-mono cwgi-border-none focus:cwgi-shadow-2xl dark:cwgi-bg-neutral-800 cwgi-bg-zinc-100 cwgi-w-full cwgi-resize-y cwgi-min-h-[6rem] cwgi-text-sm cwgi-rounded-br-[6px]"
           required
           name="comment"
           placeholder={textareaPlaceHolder()}
@@ -75,19 +75,24 @@ function inputAndPreview() {
           onInput={(e) => setStore('userComment', e.target.value)}
         ></textarea>
 
-        <div class="pt-2 text-xs dark:text-neutral-400 text-neutral-500 leading-5 ">This comment system is made with <a target="_blank" class="text-black dark:text-white" href="https://github.com/features/issues">GitHub Issues</a> by <a href="https://cwgi-docs.jw1.dev/" target="_blank" class="text-black dark:text-white">CWGI</a>, please follow the <a target="_blank" class="text-black dark:text-white" href="https://docs.github.com/en/site-policy/github-terms/github-community-code-of-conduct">GitHub Community Code of Conduct</a>.</div>
+        <div class="
+        cwgi-pt-2
+        cwgi-text-xs
+        dark:cwgi-text-neutral-400
+        cwgi-text-neutral-500
+        cwgi-leading-5 ">This comment system is made with <a target="_blank" class="cwgi-text-black dark:cwgi-text-white" href="https://github.com/features/issues">GitHub Issues</a> by <a href="https://cwgi-docs.jw1.dev/" target="_blank" class="cwgi-text-black dark:cwgi-text-white">CWGI</a>, please follow the <a target="_blank" class="cwgi-text-black dark:cwgi-text-white" href="https://docs.github.com/en/site-policy/github-terms/github-community-code-of-conduct">GitHub Community Code of Conduct</a>.</div>
 
-        <div class="text-center mt-8 flex justify-center" classList={{
-          hidden: store.gettingUser
+        <div class="cwgi-text-center cwgi-mt-8 cwgi-flex cwgi-justify-center" classList={{
+          'cwgi-hidden': store.gettingUser
         }}>
           <button type="submit"
                   disabled={!store.isUserLoggedIn}
                   classList={{
-                    'hidden': store.sending_comment,
-                    'opacity-50': !store.isUserLoggedIn
+                    'cwgi-hidden': store.sending_comment,
+                    'cwgi-opacity-50': !store.isUserLoggedIn
                   }}
-                  class="rounded-full px-4 py-2 bg-neutral-800 text-white dark:bg-white dark:text-black text-sm flex items-center group">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-send mr-2 w-4 h-4">
+                  class="cwgi-rounded-full cwgi-px-4 cwgi-py-2 cwgi-bg-neutral-800 cwgi-text-white dark:cwgi-bg-white dark:cwgi-text-black cwgi-text-sm cwgi-flex cwgi-items-center cwgi-group">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-send cwgi-mr-2 cwgi-w-4 cwgi-h-4">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <path d="M10 14l11 -11"/>
               <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5"/>
@@ -96,18 +101,18 @@ function inputAndPreview() {
           </button>
           <button disabled
                   classList={{
-                    'hidden': !store.sending_comment
+                    'cwgi-hidden': !store.sending_comment
                   }}
-                  class="rounded-full disabled:opacity-70 px-4 py-2 bg-neutral-800 text-white dark:bg-white dark:text-black text-sm flex items-center whitespace-nowrap"
+                  class="cwgi-rounded-full disabled:cwgi-opacity-70 cwgi-px-4 cwgi-py-2 cwgi-bg-neutral-800 cwgi-text-white dark:cwgi-bg-white dark:cwgi-text-black cwgi-text-sm cwgi-flex cwgi-items-center cwgi-whitespace-nowrap"
                   type="button">
             <svg xmlns="http://www.w3.org/2000/svg"
-                 class="icon icon-tabler icon-tabler-loader-2 animate-spin w-4 h-4 mr-2" viewBox="0 0 24 24"
+                 class="icon icon-tabler icon-tabler-loader-2 cwgi-animate-spin cwgi-w-4 cwgi-h-4 cwgi-mr-2" viewBox="0 0 24 24"
                  stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                  stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <path d="M12 3a9 9 0 1 0 9 9"/>
             </svg>
-            发送评论
+            Send
           </button>
         </div>
 

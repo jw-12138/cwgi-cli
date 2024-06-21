@@ -8,14 +8,15 @@ export default {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: 'selector',
+  darkMode: ['selector', '[data-mode="dark"]'],
+  prefix: 'cwgi-',
   theme: {
     extend: {},
   },
   plugins: [
     scopedPreflightStyles({
       isolationStrategy: isolateForComponents([
-        '#cwgi_box'
+        '#cwgi_inner_box'
       ])
     })
   ],

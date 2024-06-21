@@ -42,36 +42,36 @@ function CommentListItem(props) {
   }
 
   return <>
-    <div class="item py-8 transition-all relative" id={comment.id} style={{
+    <div class="item cwgi-py-8 cwgi-transition-all relative" id={comment.id} style={{
       'pointer-events': store.deletingId === comment.id ? 'none' : 'auto',
       overflow: store.comments[props.index()].aboutToGetDeleted ? 'hidden' : 'visible',
       animation: 'comment_delete_' + comment.id + ' .3s ease forwards'
     }}>
-      <div class="user flex mt-2 w-full relative">
-        <div class="outer-box flex justify-between w-full">
-          <a href={comment.html_url} target="_blank" class="user-info flex items-center text-sm group">
+      <div class="user cwgi-flex cwgi-mt-2 cwgi-w-full cwgi-relative">
+        <div class="outer-box cwgi-flex cwgi-justify-between cwgi-w-full">
+          <a href={comment.html_url} target="_blank" class="user-info cwgi-flex cwgi-items-center cwgi-text-sm cwgi-group">
             <img src={
               store.apiBase ?
                 (store.apiBase + '/proxy/' + comment.user.avatar_url + '&s=64') :
                 (comment.user.avatar_url + '&s=64')
-            } alt="user avatar" class="w-8 h-8 rounded-[10px] mb-0 mr-2 group-hover:shadow transition-shadow"/>
+            } alt="user avatar" class="cwgi-user-avatar cwgi-w-8 cwgi-h-8 cwgi-rounded-[10px] cwgi-mb-0 cwgi-mr-2 group-hover:cwgi-shadow cwgi-transition-shadow"/>
             <div>
-              <span class="flex items-center">
+              <span class="cwgi-flex cwgi-items-center">
                 {comment.user.login}
                 {
                   comment.author_association === 'OWNER' &&
                   <span
-                    class="author-tag px-2 text-xs rounded-xl relative scale-90 dark:bg-indigo-700 bg-indigo-200 dark:text-indigo-200 text-indigo-800 top-[-.03rem] ml-1"
+                    class="author-tag cwgi-px-2 cwgi-text-xs cwgi-rounded-xl cwgi-relative cwgi-scale-90 dark:cwgi-bg-indigo-700 cwgi-bg-indigo-200 dark:cwgi-text-indigo-200 cwgi-text-indigo-800 cwgi-top-[-.03rem] cwgi-ml-1"
                   >Owner</span>
                 }
                 {
                   (comment.user.login === store.user.login && store.isUserLoggedIn) &&
                   <span
-                    class="author-tag px-2 text-xs rounded-xl relative scale-90 dark:bg-yellow-300 bg-yellow-500 dark:text-black text-white top-[-.03rem] ml-1"
+                    class="author-tag cwgi-px-2 cwgi-text-xs cwgi-rounded-xl cwgi-relative cwgi-scale-90 dark:cwgi-bg-yellow-300 cwgi-bg-yellow-500 dark:cwgi-text-black cwgi-text-white cwgi-top-[-.03rem] cwgi-ml-1"
                   >Me</span>
                 }
               </span>
-              <div class="datetime text-[10px] opacity-70">
+              <div class="datetime cwgi-text-[10px] cwgi-opacity-70">
                 {dayjs(comment.created_at).fromNow()}
               </div>
             </div>
@@ -79,13 +79,13 @@ function CommentListItem(props) {
 
           {
             (store.isUserLoggedIn && store.editingCommentId !== comment.id) &&
-            <div class="comment-actions flex-shrink-0">
+            <div class="comment-actions cwgi-flex-shrink-0">
               <button
                 classList={{
-                  hidden: store.user.login !== comment.user.login
+                  'cwgi-hidden': store.user.login !== comment.user.login
                 }}
                 aria-label="More actions"
-                class="dark:bg-neutral-800 bg-neutral-200 rounded-full w-8 h-8 overflow-hidden flex items-center justify-center"
+                class="dark:cwgi-bg-neutral-800 cwgi-bg-neutral-200 cwgi-rounded-full cwgi-w-8 cwgi-h-8 cwgi-overflow-hidden cwgi-flex cwgi-items-center cwgi-justify-center"
                 onclick={(e) => {
                   e.stopPropagation()
                   toggleCommentActionDropdown(comment.id)
@@ -94,9 +94,9 @@ function CommentListItem(props) {
                 onmouseleave={() => setStore('mouseIsInActionWindow', false)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-x w-4 h-4"
+                  class="icon icon-tabler icon-tabler-x cwgi-w-4 cwgi-h-4"
                   classList={{
-                    'hidden': store.commentActionDropdown !== comment.id
+                    'cwgi-hidden': store.commentActionDropdown !== comment.id
                   }}
                   viewBox="0 0 24 24"
                   stroke-width="2"
@@ -111,9 +111,9 @@ function CommentListItem(props) {
                 </svg>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-dots w-4 h-4"
+                  class="icon icon-tabler icon-tabler-dots cwgi-w-4 cwgi-h-4"
                   classList={{
-                    hidden: store.commentActionDropdown === comment.id
+                    'cwgi-hidden': store.commentActionDropdown === comment.id
                   }}
                   viewBox="0 0 24 24"
                   stroke-width="2"
@@ -132,13 +132,13 @@ function CommentListItem(props) {
               </button>
               <button
                 aria-label={'Mention this user'}
-                class="h-[30px] leading-[28px] px-2 rounded-full bg-neutral-100 hover:bg-neutral-800 hover:text-white dark:bg-neutral-800 dark:text-white dark:hover:text-black dark:hover:bg-neutral-200 text-xs"
+                class="cwgi-h-[30px] cwgi-leading-[28px] cwgi-px-2 cwgi-rounded-full cwgi-bg-neutral-100 hover:cwgi-bg-neutral-800 hover:cwgi-text-white dark:cwgi-bg-neutral-800 dark:cwgi-text-white dark:hover:cwgi-text-black dark:hover:cwgi-bg-neutral-200 cwgi-text-xs"
                 onClick={() => mention(comment.user.login)}
                 classList={{
-                  hidden: store.user.login === comment.user.login
+                  'cwgi-hidden': store.user.login === comment.user.login
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                     class="icon icon-tabler icon-tabler-at w-4 h-4" viewBox="0 0 24 24"
+                     class="icon icon-tabler icon-tabler-at cwgi-w-4 cwgi-h-4" viewBox="0 0 24 24"
                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                      stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -154,10 +154,10 @@ function CommentListItem(props) {
         <CommentActionPanel comment={comment}></CommentActionPanel>
       </div>
 
-      <div class="mt-2 flex items-center pb-8" classList={{
-        hidden: comment.bodyHTML
+      <div class="cwgi-mt-2 cwgi-flex cwgi-items-center cwgi-pb-8" classList={{
+        'cwgi-hidden': comment.bodyHTML
       }}>
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-loader-2 animate-spin"
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-loader-2 cwgi-animate-spin"
              width="24"
              height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
              stroke-linecap="round"
@@ -167,10 +167,10 @@ function CommentListItem(props) {
         </svg>
       </div>
 
-      <div class="mt-2 page-content comment-content" style="padding-bottom: 0"
+      <div class="cwgi-mt-2 cwgi-page-content cwgi-comment-content" style="padding-bottom: 0"
            innerHTML={comment.bodyHTML ? comment.bodyHTML : `<pre>${comment.body}</pre>`}
            classList={{
-             hidden: store.editingCommentId === comment.id || !comment.bodyHTML
+             'cwgi-hidden': store.editingCommentId === comment.id || !comment.bodyHTML
            }}>
       </div>
       <CommentEditingArea comment={comment}></CommentEditingArea>

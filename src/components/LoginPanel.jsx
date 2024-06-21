@@ -70,30 +70,43 @@ function LoginPanel() {
     {
       !store.gettingUser &&
       <section data-name="login">
-        <div class="text-center relative h-[32px]">
+        <div class="cwgi-text-center cwgi-relative cwgi-h-[32px]">
           {userActionWindow() &&
             <div
               onMouseEnter={() => setStore('mouseIsInsideWindow', true)}
               onMouseLeave={() => setStore('mouseIsInsideWindow', false)}
-              class="border absolute w-[200px] px-2 py-2 rounded-[1rem] dark:bg-neutral-800 bg-white left-1/2 bottom-[37px] popup-border hover:shadow-xl transition-shadow"
+              class="
+              cwgi-border
+              cwgi-absolute
+              cwgi-w-[200px]
+              cwgi-px-2
+              cwgi-py-2
+              cwgi-rounded-[1rem]
+              dark:cwgi-bg-neutral-800
+              cwgi-bg-white
+              cwgi-left-1/2
+              cwgi-bottom-[37px]
+              cwgi-popup-border
+              hover:cwgi-shadow-xl
+              cwgi-transition-shadow"
               style={{
                 transform: 'translateX(-50%)',
                 animation: 'slideUp_offset .15s ease'
               }}
             >
               <button
-                class="text-xs px-2 py-2 text-center dark:hover:bg-white/10 hover:bg-black/10 hover:shadow w-full rounded-[.5rem] flex items-center justify-center"
+                class="cwgi-text-xs cwgi-px-2 cwgi-py-2 cwgi-text-center dark:hover:cwgi-bg-white/10 hover:cwgi-bg-black/10 hover:cwgi-shadow cwgi-w-full cwgi-rounded-[.5rem] cwgi-flex cwgi-items-center cwgi-justify-center"
                 onClick={goToUser}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="w-4 h-4 mr-2" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="cwgi-w-4 cwgi-h-4 cwgi-mr-2" fill="currentColor">
                   <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
                 </svg>
                 My GitHub Page
               </button>
 
               <button
-                class="text-xs px-2 py-2 text-center hover:bg-red-500 hover:text-white hover:shadow focus:bg-red-500 focus:text-white w-full rounded-[.5rem] flex items-center justify-center"
+                class="cwgi-text-xs cwgi-px-2 cwgi-py-2 cwgi-text-center hover:cwgi-bg-red-500 hover:cwgi-text-white hover:cwgi-shadow focus:cwgi-bg-red-500 focus:cwgi-text-white cwgi-w-full cwgi-rounded-[.5rem] cwgi-flex cwgi-items-center cwgi-justify-center"
                 onClick={logout}>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout w-4 h-4 mr-2"
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout cwgi-w-4 cwgi-h-4 cwgi-mr-2"
                      viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                      stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -109,32 +122,32 @@ function LoginPanel() {
           <div
             onMouseEnter={() => setStore('mouseIsInsideWindow', true)}
             onMouseLeave={() => setStore('mouseIsInsideWindow', false)}
-            class="user-window dark:bg-neutral-800 bg-neutral-100 h-[32px] items-center inline-block border-none relative z-10 rounded-full hover:shadow-xl transition-all ">
+            class="user-window dark:cwgi-bg-neutral-800 cwgi-bg-neutral-100 cwgi-h-[32px] cwgi-items-center cwgi-inline-block cwgi-border-none cwgi-relative cwgi-z-10 cwgi-rounded-full hover:cwgi-shadow-xl cwgi-transition-all ">
             {store.isUserLoggedIn &&
               <button
-                class="flex h-[32px] items-center border-none cursor-pointer select-none rounded-full"
+                class="cwgi-flex cwgi-h-[32px] cwgi-items-center cwgi-border-none cwgi-cursor-pointer cwgi-select-none cwgi-rounded-full"
                 onClick={() => setUserActionWindow(!userActionWindow())}
                 onFocus={() => setStore('mouseIsInsideWindow', true)}
                 onBlur={() => setStore('mouseIsInsideWindow', false)}>
 
-                <span class="w-[32px] h-[32px] overflow-hidden rounded-full">
+                <span class="cwgi-w-[32px] cwgi-h-[32px] cwgi-overflow-hidden cwgi-rounded-full">
                   <img
                     src={store.apiBase ?
                       (store.apiBase + '/proxy/' + store.user.avatar_url + '&s=64') :
                       (store.user.avatar_url + '&s=64')
                     }
                     alt="user avatar"
-                    class="w-full h-full"/>
+                    class="cwgi-w-full cwgi-h-full"/>
                 </span>
                 <span
-                  class="text-sm pl-2 pr-2">
+                  class="cwgi-text-sm cwgi-pl-2 cwgi-pr-2">
                   {store.user.login}
                 </span>
-                <span class="pr-2">
+                <span class="cwgi-pr-2">
                   {
                     !userActionWindow() &&
                     <svg xmlns="http://www.w3.org/2000/svg"
-                         class="icon icon-tabler icon-tabler-selector w-4 h-4" viewBox="0 0 24 24" stroke-width="2"
+                         class="icon icon-tabler icon-tabler-selector cwgi-w-4 cwgi-h-4" viewBox="0 0 24 24" stroke-width="2"
                          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                       <path stroke="none"
                             d="M0 0h24v24H0z"
@@ -148,7 +161,7 @@ function LoginPanel() {
                   {
                     userActionWindow() &&
                     <svg xmlns="http://www.w3.org/2000/svg"
-                         class="icon icon-tabler icon-tabler-x w-4 h-4" viewBox="0 0 24 24" stroke-width="2"
+                         class="icon icon-tabler icon-tabler-x cwgi-w-4 cwgi-h-4" viewBox="0 0 24 24" stroke-width="2"
                          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                       <path stroke="none"
                             d="M0 0h24v24H0z"
@@ -164,7 +177,7 @@ function LoginPanel() {
         </div>
 
         {!store.isUserLoggedIn &&
-          <div class="text-center">
+          <div class="cwgi-text-center">
             <button onClick={login}
                     id={'loginWithGitHub'}
                     class="text-sm px-8 py-2 rounded-full dark:bg-white dark:text-black flex items-center mx-auto bg-neutral-800 text-white shadow-2xl">

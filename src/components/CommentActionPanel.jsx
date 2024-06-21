@@ -63,7 +63,7 @@ function CommentActionPanel(props) {
       store.commentActionDropdown === comment.id &&
       <div
         data-name="more actions"
-        class="absolute z-[500] top-[2.25rem] right-0 rounded-[1rem] dark:bg-neutral-800 px-2 py-2 bg-neutral-100 border-[1px] shadow-xl popup-border"
+        class="cwgi-absolute cwgi-z-[500] cwgi-top-[2.25rem] cwgi-right-0 cwgi-rounded-[1rem] dark:cwgi-bg-neutral-800 cwgi-px-2 cwgi-py-2 cwgi-bg-neutral-100 cwgi-border-[1px] cwgi-shadow-xl popup-border"
         style={{
           animation: '0.15s ease 0s 1 normal none running slideUp'
         }}
@@ -75,8 +75,8 @@ function CommentActionPanel(props) {
             setStore('commentActionDropdown', '')
           }}
           disabled={store.deletingId === comment.id}
-          class="py-2 px-4 rounded-[.5rem] w-full text-xs flex transition-all dark:hover:bg-white/10 hover:bg-black/10">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit-circle w-4 h-4 mr-1"
+          class="cwgi-py-2 cwgi-px-4 cwgi-rounded-[.5rem] cwgi-w-full cwgi-text-xs cwgi-flex cwgi-transition-all dark:hover:cwgi-bg-white/10 hover:cwgi-bg-black/10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit-circle cwgi-w-4 cwgi-h-4 cwgi-mr-1"
                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -91,15 +91,15 @@ function CommentActionPanel(props) {
           onClick={() => deleteComment(comment.id)}
           disabled={store.deletingId === comment.id}
           classList={{
-            'bg-red-500 text-white dark:bg-red-500 dark:text-white': store.deletingId === comment.id
+            'cwgi-bg-red-500 cwgi-text-white dark:cwgi-bg-red-500 dark:cwgi-text-white': store.deletingId === comment.id
           }}
-          class="py-2 px-4 rounded-[.5rem] w-full hover:bg-red-500 hover:text-white dark:bg-neutral-800 dark:text-white text-xs flex transition-all">
+          class="cwgi-py-2 cwgi-px-4 cwgi-rounded-[.5rem] cwgi-w-full hover:cwgi-bg-red-500 hover:cwgi-text-white dark:cwgi-bg-neutral-800 dark:cwgi-text-white cwgi-text-xs cwgi-flex cwgi-transition-all">
           <svg
             classList={{
-              'hidden': store.deletingId === comment.id
+              'cwgi-hidden': store.deletingId === comment.id
             }}
             xmlns="http://www.w3.org/2000/svg"
-            class="icon icon-tabler icon-tabler-trash w-4 h-4 mr-1" viewBox="0 0 24 24" stroke-width="2"
+            class="icon icon-tabler icon-tabler-trash cwgi-w-4 cwgi-h-4 cwgi-mr-1" viewBox="0 0 24 24" stroke-width="2"
             stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path
               stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -113,9 +113,9 @@ function CommentActionPanel(props) {
           </svg>
           <svg
             classList={{
-              'hidden': store.deletingId !== comment.id
+              'cwgi-hidden': store.deletingId !== comment.id
             }}
-            xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1 animate-spin icon icon-tabler icons-tabler-outline icon-tabler-loader-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            xmlns="http://www.w3.org/2000/svg" class="cwgi-w-4 cwgi-h-4 cwgi-mr-1 cwgi-animate-spin icon icon-tabler icons-tabler-outline icon-tabler-loader-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <path d="M12 3a9 9 0 1 0 9 9"/>
           </svg>

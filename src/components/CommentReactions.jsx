@@ -161,27 +161,27 @@ function commentReactions(props) {
   const {comment} = props
   return <>
     {
-      store.editingCommentId !== comment.id && <div class="mt-[-0.6rem] relative z-50 flex items-center" data-name="reactions" classList={{
-        'opacity-50 pointer-events-none': store.listingReactionCommentIds.includes(comment.id)
+      store.editingCommentId !== comment.id && <div class="cwgi-mt-[-0.6rem] cwgi-relative cwgi-z-50 cwgi-flex cwgi-items-center" data-name="reactions" classList={{
+        'cwgi-opacity-50 cwgi-pointer-events-none': store.listingReactionCommentIds.includes(comment.id)
       }}>
         <For each={reactionButtons}>
           {(button, index) =>
             <button
               onClick={() => makeReactionToComment(button.content, comment.id)}
-              class="mr-1 disabled:opacity-50 text-xs flex items-center rounded-full px-2 py-1 max-h-[1.5rem] group text-neutral-800 dark:text-neutral-50 dark:bg-neutral-700 bg-neutral-100 hover:shadow dark:hover:bg-white dark:hover:text-neutral-900 hover:bg-neutral-900 hover:text-white"
+              class="cwgi-mr-1 disabled:cwgi-opacity-50 cwgi-text-xs cwgi-flex cwgi-items-center cwgi-rounded-full cwgi-px-2 cwgi-py-1 cwgi-max-h-[1.5rem] cwgi-group cwgi-text-neutral-800 dark:cwgi-text-neutral-50 dark:cwgi-bg-neutral-700 cwgi-bg-neutral-100 hover:cwgi-shadow dark:hover:cwgi-bg-white dark:hover:cwgi-text-neutral-900 hover:cwgi-bg-neutral-900 hover:cwgi-text-white"
               disabled={store.reactingCommentID.includes(comment.id)}
               title={button.means}>
 
               <span
-                class="transition-all mr-1 relative top-0"
+                class="cwgi-transition-all cwgi-mr-1 cwgi-relative cwgi-top-0"
                 classList={{
-                  'text-2xl rotate-[-12deg] top-[-.2rem]': userHasReactedToComment(comment.id, button.content)
+                  'cwgi-text-2xl cwgi-rotate-[-12deg] cwgi-top-[-.2rem]': userHasReactedToComment(comment.id, button.content)
                 }}
               >
                 {button.label}
               </span>
 
-              <span class="font-mono">{
+              <span class="cwgi-font-mono">{
                 store.commentReactionMap[comment.id] && store.commentReactionMap[comment.id][button.content] ? store.commentReactionMap[comment.id][button.content].length : 0
               }</span>
 

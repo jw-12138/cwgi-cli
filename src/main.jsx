@@ -22,31 +22,39 @@ export function init(githubIssueId = false, options = {}) {
     return false
   }
 
-  dispose = render(() => <CommentSystem githubIssueId={githubIssueId} options={options}/>, root)
+  dispose = render(() => <div id="cwgi_inner_box">
+    <CommentSystem githubIssueId={githubIssueId} options={options}/>
+  </div>, root)
+
+  console.log('darkMode:', options.darkMode)
 
   if (options.darkMode === undefined) {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      root.classList.add('dark')
+      root.setAttribute('data-mode', 'dark')
     }
 
     // check dark mode change
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
       if (e.matches) {
-        root.classList.add('dark')
+        root.setAttribute('data-mode', 'dark')
       } else {
-        root.classList.remove('dark')
+        root.removeAttribute('data-mode')
       }
     })
   }
 
   if (options.darkMode === true) {
-    root.classList.add('dark')
+    root.setAttribute('data-mode', 'dark')
+  }
+
+  if (options.darkMode === false) {
+    root.removeAttribute('data-mode')
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   if (import.meta.env.DEV === true) {
-    init(90, {
+    init(82, {
       darkMode: false,
       owner: 'jw-12138',
       repo: 'jw-12138.github.io',

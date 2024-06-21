@@ -97,8 +97,8 @@ export default function Comments(props) {
   })
 
   return <>
-    {props.githubIssueId && <div data-name="comments" id="comments" class="mb-4 max-w-[46rem] mx-auto">
-      <div class="py-[2.8rem] h-[1px]">
+    {props.githubIssueId && <div data-name="comments" id="comments" class="cwgi-mb-4 cwgi-max-w-[46rem] cwgi-mx-auto">
+      <div class="cwgi-py-[2.8rem] cwgi-h-[1px]">
       </div>
 
       <Loading></Loading>
