@@ -30,9 +30,16 @@ async function githubApi(endpoint, init = {}) {
   }
 
   // disable workers cache
-  endpoint = endpoint + '?' + new URLSearchParams({
-    t: Date.now()
-  })
+  let endpointUrl = new URL(endpoint)
+
+  if (endpointUrl.search && endpointUrl.search.startsWith('?') && endpointUrl.search.length > 1) {
+    // build url with t
+    endpoint = endpoint + '&t=' + Date.now()
+  } else {
+    endpoint = endpoint + '?' + new URLSearchParams({
+      t: Date.now()
+    })
+  }
 
   let proxy = store.apiBase ? store.proxy : ''
 

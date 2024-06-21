@@ -75,7 +75,7 @@ function inputAndPreview() {
           onInput={(e) => setStore('userComment', e.target.value)}
         ></textarea>
 
-        <div class="pt-2 text-xs dark:text-neutral-400 text-neutral-500 leading-5 ">This comment system is made with <a target="_blank" class="text-black dark:text-white" href="https://github.com/features/issues">GitHub Issues</a>, please follow the <a target="_blank" class="text-black dark:text-white" href="https://docs.github.com/en/site-policy/github-terms/github-community-code-of-conduct">GitHub Community Code of Conduct</a>.</div>
+        <div class="pt-2 text-xs dark:text-neutral-400 text-neutral-500 leading-5 ">This comment system is made with <a target="_blank" class="text-black dark:text-white" href="https://github.com/features/issues">GitHub Issues</a> by <a href="https://github.com/jw-12138/cwgi-cli" target="_blank" class="text-black dark:text-white">CWGI</a>, please follow the <a target="_blank" class="text-black dark:text-white" href="https://docs.github.com/en/site-policy/github-terms/github-community-code-of-conduct">GitHub Community Code of Conduct</a>.</div>
 
         <div class="text-center mt-8 flex justify-center" classList={{
           hidden: store.gettingUser

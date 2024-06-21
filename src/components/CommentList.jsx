@@ -1,5 +1,5 @@
 import useStore from './Store.jsx'
-import {createEffect, For, on, onMount} from 'solid-js'
+import {createEffect, createSignal, For, on, onMount} from 'solid-js'
 import CommentListItem from './CommentListItem.jsx'
 import {githubApi, renderMarkdown} from './utils.jsx'
 
@@ -13,6 +13,10 @@ function CommentList() {
       setStore('shouldListReactionsForCommentId', 0)
     }
   }))
+
+  const per_page = 50
+  const [currentPage, setCurrentPage] = createSignal(1)
+  const [newlyAddedCommentsCount, setNewlyAddedCommentsCount] = createSignal(0)
 
   /**
    * 获取评论点赞
@@ -73,7 +77,7 @@ function CommentList() {
       return false
     }
 
-    if(update_id){
+    if (update_id) {
       let theCommentIndex = store.comments.findIndex(c => c.id === update_id)
 
       if (theCommentIndex !== -1) {
@@ -86,13 +90,18 @@ function CommentList() {
 
     setStore('gettingComments', true)
 
-    let resp = await githubApi(`https://api.github.com/repos/${store.owner}/${store.repo}/issues/${store.githubIssueId}/comments`)
+    let resp = await githubApi(`https://api.github.com/repos/${store.owner}/${store.repo}/issues/${store.githubIssueId}/comments?per_page=${per_page}&page=${currentPage()}`)
     let remoteComments = await resp.json()
     setStore('gettingComments', false)
-    setStore('comments', remoteComments)
+    setStore('comments', [
+      ...store.comments,
+      ...remoteComments
+    ])
+    setNewlyAddedCommentsCount(remoteComments.length)
 
-    // get all reactions here
-    for (let i = 0; i < store.comments.length; i++) {
+    // get all reactions for loaded comments here
+    for (let i = store.comments.length - newlyAddedCommentsCount(); i < store.comments.length; i++) {
+      console.log(i)
       setStore('shouldListReactionsForCommentId', store.comments[i].id)
 
       if (store.comments[i].body) {
@@ -114,29 +123,19 @@ function CommentList() {
     }
   }))
 
-  return <>
-    {store.gettingComments && <section data-name="loading screen" class="pt-8">
-      <div class="flex text-sm justify-center items-center">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-loader-2 animate-spin" width="24"
-               height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-               stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M12 3a9 9 0 1 0 9 9"/>
-          </svg>
-        </div>
-      </div>
-    </section>}
+  createEffect(on(() => currentPage(), async (page) => {
+    if (page === 1) {
+      return
+    }
+    await getComments()
+    setStore('shouldUpdateCommentId', 0)
+  }))
 
+  return <>
     <section data-name="comments" class="pt-8">
       <div class="text-center text-base font-black italic" classList={{
-        hidden: store.gettingComments
+        hidden: store.gettingComments && store.comments.length === 0
       }}>
-        <span classList={{
-          hidden: store.comments.length === 0
-        }}>
-          <span>{store.comments.length}</span> Comment{store.comments.length === 1 ? '' : 's'}
-        </span>
         <span classList={{
           hidden: store.comments.length !== 0
         }} class="font-normal text-sm opacity-80 not-italic">
@@ -151,7 +150,28 @@ function CommentList() {
           </For>
         </div>
       }
+
+      <div classList={{
+        'hidden': store.gettingComments || newlyAddedCommentsCount() < per_page
+      }}>
+        <button class="bg-black dark:bg-white rounded-3xl px-4 py-2 text-xs text-white dark:text-black mx-auto block" onClick={() => {
+          setCurrentPage(() => currentPage() + 1)
+        }}>Load More</button>
+      </div>
     </section>
+
+    {store.gettingComments && <section data-name="loading screen" class="pt-8">
+      <div class="flex text-sm justify-center items-center">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-loader-2 animate-spin" width="24"
+               height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+               stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M12 3a9 9 0 1 0 9 9"/>
+          </svg>
+        </div>
+      </div>
+    </section>}
   </>
 }
 
