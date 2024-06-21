@@ -1,6 +1,6 @@
 import useStore from './Store.jsx'
 import {For} from 'solid-js'
-import {githubApi, owner, repo} from './utils.jsx'
+import {githubApi} from './utils.jsx'
 import {produce} from 'solid-js/store'
 
 const [store, setStore] = useStore()
@@ -62,7 +62,7 @@ let userHasReactedToComment = function (comment_id, reaction) {
  * @returns {Promise<void>}
  */
 async function undoReactionToComment(comment_id, reaction_id, content) {
-  let api = `https://api.github.com/repos/${owner}/${repo}/issues/comments/${comment_id}/reactions/${reaction_id}`
+  let api = `https://api.github.com/repos/${store.owner}/${store.repo}/issues/comments/${comment_id}/reactions/${reaction_id}`
 
   let resp
   try {
@@ -114,7 +114,7 @@ async function makeReactionToComment(reaction, comment_id) {
     return false
   }
 
-  let api = `https://api.github.com/repos/${owner}/${repo}/issues/comments/${comment_id}/reactions`
+  let api = `https://api.github.com/repos/${store.owner}/${store.repo}/issues/comments/${comment_id}/reactions`
 
   let resp
 

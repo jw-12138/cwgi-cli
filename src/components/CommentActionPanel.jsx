@@ -1,5 +1,5 @@
 import useStore from './Store.jsx'
-import {githubApi, owner, repo} from './utils.jsx'
+import {githubApi} from './utils.jsx'
 
 const [store, setStore] = useStore()
 
@@ -14,7 +14,7 @@ async function deleteComment(id) {
   let resp
 
   try {
-    resp = await githubApi(`https://api.github.com/repos/${owner}/${repo}/issues/comments/${id}`, {
+    resp = await githubApi(`https://api.github.com/repos/${store.owner}/${store.repo}/issues/comments/${id}`, {
       method: 'DELETE'
     })
   } catch (e) {

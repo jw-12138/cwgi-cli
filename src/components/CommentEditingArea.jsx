@@ -1,7 +1,6 @@
 import {Show} from 'solid-js'
 import useStore from './Store.jsx'
-import {githubApi, owner, repo} from './utils.jsx'
-import {produce} from 'solid-js/store'
+import {githubApi} from './utils.jsx'
 
 const [store, setStore] = useStore()
 
@@ -32,7 +31,7 @@ async function confirmEditing() {
     return
   }
 
-  let endpoint = `https://api.github.com/repos/${owner}/${repo}/issues/comments/${id}`
+  let endpoint = `https://api.github.com/repos/${store.owner}/${store.repo}/issues/comments/${id}`
 
   let resp
 

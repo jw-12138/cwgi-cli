@@ -1,7 +1,7 @@
 import useStore from './Store.jsx'
 import {createEffect, For, on, onMount} from 'solid-js'
 import CommentListItem from './CommentListItem.jsx'
-import {githubApi, owner, renderMarkdown, repo} from './utils.jsx'
+import {githubApi, renderMarkdown} from './utils.jsx'
 
 const [store, setStore] = useStore()
 
@@ -26,7 +26,7 @@ function CommentList() {
       return false
     }
 
-    let api = `https://api.github.com/repos/${owner}/${repo}/issues/comments/${comment_id}/reactions`
+    let api = `https://api.github.com/repos/${store.owner}/${store.repo}/issues/comments/${comment_id}/reactions`
 
     let resp
 
@@ -86,7 +86,7 @@ function CommentList() {
 
     setStore('gettingComments', true)
 
-    let resp = await githubApi(`https://api.github.com/repos/${owner}/${repo}/issues/${store.githubIssueId}/comments`)
+    let resp = await githubApi(`https://api.github.com/repos/${store.owner}/${store.repo}/issues/${store.githubIssueId}/comments`)
     let remoteComments = await resp.json()
     setStore('gettingComments', false)
     setStore('comments', remoteComments)

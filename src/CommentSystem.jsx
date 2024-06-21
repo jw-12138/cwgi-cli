@@ -12,6 +12,30 @@ const [store, setStore] = useStore()
 export default function Comments(props) {
   setStore('githubIssueId', props.githubIssueId)
 
+  if (!props.options.owner) {
+    console.error('owner is required to init comment system')
+    return false
+  }
+
+  if (!props.options.repo) {
+    console.error('repo is required to init comment system')
+    return false
+  }
+
+  if (!props.options.clientId) {
+    console.error('clientId is required to init comment system')
+    return false
+  }
+
+  setStore('owner', props.options.owner)
+  setStore('repo', props.options.repo)
+  setStore('clientId', props.options.clientId)
+
+  if(props.options.proxy){
+    setStore('apiBase', props.options.proxy)
+    setStore('proxy', props.options.proxy + '/proxy/')
+  }
+
   createEffect(on(() => store.githubIssueId, () => {
     setStore('comments', [])
   }))

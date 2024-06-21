@@ -1,12 +1,8 @@
 import useStore from './Store.jsx'
 import dayjs from 'dayjs'
 
-const [store, setStore] = useStore()
-
-let owner = import.meta.env.VITE_GH_OWNER
-let repo = import.meta.env.VITE_GH_REPO
-let auth_api = 'https://github.com/login/oauth/authorize'
-let client_id = import.meta.env.VITE_GH_CLIENT_ID
+const [store] = useStore()
+const auth_api = 'https://github.com/login/oauth/authorize'
 
 /**
  * GitHub api helper
@@ -123,8 +119,5 @@ async function renderMarkdown(markdown, id = -1, updated_at = '') {
 export {
   githubApi,
   renderMarkdown,
-  auth_api,
-  client_id,
-  owner,
-  repo
+  auth_api
 }

@@ -12,7 +12,8 @@ export default defineConfig({
     lib: {
       entry: 'src/main.jsx',
       name: '_CWGI',
-      formats: ['iife', 'es']
+      formats: ['iife', 'es'],
+      fileName: 'cwgi'
     },
     sourcemap: true
   }

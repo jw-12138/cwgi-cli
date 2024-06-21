@@ -1,10 +1,7 @@
 import {createStore} from 'solid-js/store'
 
-let apiBase = import.meta.env.VITE_API_BASE || ''
-let proxy = apiBase + '/proxy/'
-
 const [store, setStore] = createStore({
-  apiBase,
+  apiBase: '',
   mouseIsInsideWindow: false,
   mouseIsInActionWindow: false,
   sending_comment: false,
@@ -15,7 +12,7 @@ const [store, setStore] = createStore({
   githubIssueId: '',
   comments: [],
   isUserLoggedIn: false,
-  proxy: proxy,
+  proxy: '',
   reactingCommentID: [],
   listingReactionCommentIds: [],
   accessToken: '',
@@ -27,7 +24,10 @@ const [store, setStore] = createStore({
   shouldUpdateCommentId: 0,
   commentReactionMap: {},
   reactingIds: [],
-  shouldListReactionsForCommentId: 0
+  shouldListReactionsForCommentId: 0,
+  owner: '',
+  repo: '',
+  clientId: ''
 })
 
 export default function useStore() {

@@ -1,12 +1,12 @@
 import useStore from './Store.jsx'
 import {createSignal} from 'solid-js'
-import {auth_api, client_id} from './utils.jsx'
+import {auth_api} from './utils.jsx'
 
 const [store, setStore] = useStore()
 
-const authUrl = `${auth_api}?state=${Date.now()}&client_id=${client_id}&redirect_uri=${encodeURIComponent(`https://cwgi.jw1.dev/callback?r=${location.href}`)}`
-
 function LoginPanel() {
+  const authUrl = `${auth_api}?state=${Date.now()}&client_id=${store.clientId}&redirect_uri=${encodeURIComponent(`https://cwgi.jw1.dev/callback?r=${location.href}`)}`
+
   // popup
   let [userActionWindow, setUserActionWindow] = createSignal(false)
 

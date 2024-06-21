@@ -1,5 +1,5 @@
 import useStore from './Store.jsx'
-import {githubApi, owner, renderMarkdown, repo} from './utils.jsx'
+import {githubApi, renderMarkdown} from './utils.jsx'
 
 const [store, setStore] = useStore()
 
@@ -15,7 +15,7 @@ function inputAndPreview() {
     let resp
 
     try {
-      resp = await githubApi(`https://api.github.com/repos/${owner}/${repo}/issues/${store.githubIssueId}/comments`, {
+      resp = await githubApi(`https://api.github.com/repos/${store.owner}/${store.repo}/issues/${store.githubIssueId}/comments`, {
         method: 'POST',
         body: JSON.stringify({
           body: store.userComment
@@ -55,7 +55,7 @@ function inputAndPreview() {
       return 'Please login first'
     }
 
-    return "Ask a question or leave a comment"
+    return 'Ask a question or leave a comment'
   }
 
   return <>
@@ -75,9 +75,7 @@ function inputAndPreview() {
           onInput={(e) => setStore('userComment', e.target.value)}
         ></textarea>
 
-        <div class="pt-2 text-xs dark:text-neutral-400 text-neutral-500 leading-5 text-center">
-          Powered by <a href="https://github.com/jw-12138/cwgi-cli" target="_blank">CWGI</a>
-        </div>
+        <div class="pt-2 text-xs dark:text-neutral-400 text-neutral-500 leading-5 ">This comment system is made with <a target="_blank" class="text-black dark:text-white" href="https://github.com/features/issues">GitHub Issues</a>, please follow the <a target="_blank" class="text-black dark:text-white" href="https://docs.github.com/en/site-policy/github-terms/github-community-code-of-conduct">GitHub Community Code of Conduct</a>.</div>
 
         <div class="text-center mt-8 flex justify-center" classList={{
           hidden: store.gettingUser

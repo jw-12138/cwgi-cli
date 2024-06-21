@@ -62,7 +62,7 @@ function CommentListItem(props) {
                   comment.author_association === 'OWNER' &&
                   <span
                     class="author-tag px-2 text-xs rounded-xl relative scale-90 dark:bg-indigo-700 bg-indigo-200 dark:text-indigo-200 text-indigo-800 top-[-.03rem] ml-1"
-                  >Author</span>
+                  >Owner</span>
                 }
                 {
                   (comment.user.login === store.user.login && store.isUserLoggedIn) &&
