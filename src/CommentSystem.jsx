@@ -89,7 +89,7 @@ export default function Comments(props) {
 
     let pageHash = location.hash
     if (pageHash === '#comments') {
-      document.getElementById('comments').scrollIntoView({
+      document.getElementById('cwgi_comments').scrollIntoView({
         behavior: 'instant'
       })
 
@@ -101,8 +101,8 @@ export default function Comments(props) {
   })
 
   return <>
-    {props.githubIssueId && <div data-name="comments" id="comments" class="cwgi-mb-4 cwgi-max-w-[46rem] cwgi-mx-auto">
-      <div class="cwgi-py-[2.8rem] cwgi-h-[1px]">
+    {props.githubIssueId && <div data-name="comments" id="cwgi_comments" class="cwgi-mb-4 cwgi-max-w-[46rem] cwgi-mx-auto">
+      <div class="cwgi-h-[1px]">
       </div>
 
       <Loading></Loading>
