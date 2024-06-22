@@ -63,7 +63,7 @@ function CommentActionPanel(props) {
       store.commentActionDropdown === comment.id &&
       <div
         data-name="more actions"
-        class="cwgi-absolute cwgi-z-[500] cwgi-top-[2.25rem] cwgi-right-0 cwgi-rounded-[1rem] dark:cwgi-bg-neutral-800 cwgi-px-2 cwgi-py-2 cwgi-bg-neutral-100 cwgi-border-[1px] cwgi-shadow-xl popup-border"
+        class="cwgi-absolute cwgi-z-[500] cwgi-top-[2.25rem] cwgi-right-0 cwgi-rounded-[1rem] dark:cwgi-bg-neutral-800 cwgi-px-2 cwgi-py-2 cwgi-bg-neutral-100 cwgi-border-[1px] cwgi-shadow-xl cwgi-popup-border"
         style={{
           animation: '0.15s ease 0s 1 normal none running slideUp'
         }}
