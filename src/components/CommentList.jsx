@@ -8,7 +8,7 @@ const [store, setStore] = useStore()
 function CommentList() {
 
   createEffect(on(() => store.shouldListReactionsForCommentId, async (id) => {
-    if (id && store.showReactions) {
+    if (id) {
       await listReactionsForComment(id)
       setStore('shouldListReactionsForCommentId', 0)
     }

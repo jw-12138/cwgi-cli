@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
       repo: 'jw-12138.github.io',
       clientId: 'Iv1.717c117523f74671',
       proxy: 'https://cwgi.jw1.dev',
-      reactions: false
+      reactions: true
     })
   }
 })
