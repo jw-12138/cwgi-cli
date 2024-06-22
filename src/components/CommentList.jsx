@@ -8,7 +8,7 @@ const [store, setStore] = useStore()
 function CommentList() {
 
   createEffect(on(() => store.shouldListReactionsForCommentId, async (id) => {
-    if (id) {
+    if (id && store.showReactions) {
       await listReactionsForComment(id)
       setStore('shouldListReactionsForCommentId', 0)
     }
@@ -25,6 +25,10 @@ function CommentList() {
    * @returns {Promise<boolean>}
    */
   async function listReactionsForComment(comment_id, retryLeft = 3) {
+
+    if(store.showReactions === false){
+      return false
+    }
 
     if (retryLeft === 0) {
       return false

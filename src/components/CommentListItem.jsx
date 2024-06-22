@@ -43,6 +43,7 @@ function CommentListItem(props) {
 
   return <>
     <div class="item cwgi-py-8 cwgi-transition-all relative" id={comment.id} style={{
+      'padding-bottom': store.showReactions ? '2rem' : '0',
       'pointer-events': store.deletingId === comment.id ? 'none' : 'auto',
       overflow: store.comments[props.index()].aboutToGetDeleted ? 'hidden' : 'visible',
       animation: 'comment_delete_' + comment.id + ' .3s ease forwards'
@@ -174,7 +175,9 @@ function CommentListItem(props) {
            }}>
       </div>
       <CommentEditingArea comment={comment}></CommentEditingArea>
-      <CommentReactions comment={comment}></CommentReactions>
+      {
+        store.showReactions && <CommentReactions comment={comment}></CommentReactions>
+      }
     </div>
   </>
 }

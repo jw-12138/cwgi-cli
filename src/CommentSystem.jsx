@@ -36,6 +36,10 @@ export default function Comments(props) {
     setStore('proxy', props.options.proxy + '/proxy/')
   }
 
+  if(props.options.reactions === false){
+    setStore('showReactions', false)
+  }
+
   createEffect(on(() => store.githubIssueId, () => {
     setStore('comments', [])
   }))

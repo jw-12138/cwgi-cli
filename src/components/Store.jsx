@@ -27,7 +27,8 @@ const [store, setStore] = createStore({
   shouldListReactionsForCommentId: 0,
   owner: '',
   repo: '',
-  clientId: ''
+  clientId: '',
+  showReactions: true
 })
 
 export default function useStore() {
