@@ -26,8 +26,6 @@ export function init(githubIssueId = false, options = {}) {
     <CommentSystem githubIssueId={githubIssueId} options={options}/>
   </div>, root)
 
-  console.log('darkMode:', options.darkMode)
-
   if (options.darkMode === undefined) {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       root.setAttribute('data-mode', 'dark')
