@@ -74,7 +74,9 @@ function LoginPanel() {
     <>
       {!store.gettingUser && (
         <section data-name="login">
-          <div class="cwgi-text-center cwgi-relative cwgi-h-[32px]">
+          <div class="cwgi-text-center cwgi-relative cwgi-h-[32px]" classList={{
+            'cwgi-hidden': !store.isUserLoggedIn
+          }}>
             {userActionWindow() && (
               <div
                 onMouseEnter={() => setStore('mouseIsInsideWindow', true)}
