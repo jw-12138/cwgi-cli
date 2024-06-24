@@ -1,5 +1,3 @@
-# cwgi-api
-
 [CWGI](https://github.com/jw-12138/cwgi-cli) is a blog comment system based on GitHub Issues with minimalism in mind.
 
 ## Features
