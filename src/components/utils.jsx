@@ -12,7 +12,7 @@ const auth_api = 'https://github.com/login/oauth/authorize'
  */
 async function githubApi(endpoint, init = {}) {
   let headers = {
-    'Accept': 'application/vnd.github+json',
+    Accept: 'application/vnd.github+json',
     ...init.headers
   }
 
@@ -36,24 +36,17 @@ async function githubApi(endpoint, init = {}) {
     // build url with t
     endpoint = endpoint + '&t=' + Date.now()
   } else {
-    endpoint = endpoint + '?' + new URLSearchParams({
-      t: Date.now()
-    })
+    endpoint =
+      endpoint +
+      '?' +
+      new URLSearchParams({
+        t: Date.now()
+      })
   }
 
   let proxy = store.apiBase ? store.proxy : ''
 
   return await fetch(proxy + endpoint, _init)
-}
-
-/**
- * check if markdown contains any code fence
- * @param {string} markdown
- * @returns {boolean}
- */
-function containsCodeBlocks(markdown) {
-  const codeBlockPattern = /```(.*?)```/gs
-  return codeBlockPattern.test(markdown)
 }
 
 /**
@@ -111,7 +104,7 @@ async function renderMarkdown(markdown, id = -1, updated_at = '') {
 
       oldCacheKeys = oldCacheKeys ? JSON.parse(oldCacheKeys) : []
 
-      oldCacheKeys.map(async key => {
+      oldCacheKeys.map(async (key) => {
         sessionStorage.removeItem(key)
       })
       sessionStorage.setItem(key, remoteText)
@@ -123,8 +116,4 @@ async function renderMarkdown(markdown, id = -1, updated_at = '') {
   }
 }
 
-export {
-  githubApi,
-  renderMarkdown,
-  auth_api
-}
+export { githubApi, renderMarkdown, auth_api }

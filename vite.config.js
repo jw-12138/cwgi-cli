@@ -9,11 +9,15 @@ export default defineConfig({
     port: 19247
   },
   build: {
+    target: 'chrome87',
     lib: {
       entry: 'src/main.jsx',
       name: '_CWGI',
       formats: ['iife', 'es'],
       fileName: 'cwgi'
+    },
+    rollupOptions: {
+      external: []
     },
     sourcemap: true
   }

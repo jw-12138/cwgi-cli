@@ -1,18 +1,23 @@
 import useStore from './Store.jsx'
-import {createEffect, createSignal, For, on, onMount} from 'solid-js'
+import { createEffect, createSignal, For, on, onMount } from 'solid-js'
 import CommentListItem from './CommentListItem.jsx'
-import {githubApi, renderMarkdown} from './utils.jsx'
+import { githubApi, renderMarkdown } from './utils.jsx'
+import IconLoading from './IconLoading.jsx'
 
 const [store, setStore] = useStore()
 
 function CommentList() {
-
-  createEffect(on(() => store.shouldListReactionsForCommentId, async (id) => {
-    if (id) {
-      await listReactionsForComment(id)
-      setStore('shouldListReactionsForCommentId', 0)
-    }
-  }))
+  createEffect(
+    on(
+      () => store.shouldListReactionsForCommentId,
+      async (id) => {
+        if (id) {
+          await listReactionsForComment(id)
+          setStore('shouldListReactionsForCommentId', 0)
+        }
+      }
+    )
+  )
 
   const per_page = 50
   const [currentPage, setCurrentPage] = createSignal(1)
@@ -25,8 +30,7 @@ function CommentList() {
    * @returns {Promise<boolean>}
    */
   async function listReactionsForComment(comment_id, retryLeft = 3) {
-
-    if(store.showReactions === false){
+    if (store.showReactions === false) {
       return false
     }
 
@@ -46,7 +50,10 @@ function CommentList() {
       await listReactionsForComment(comment_id, retryLeft - 1)
       return false
     } finally {
-      setStore('listingReactionCommentIds', store.listingReactionCommentIds.filter(item => item !== comment_id))
+      setStore(
+        'listingReactionCommentIds',
+        store.listingReactionCommentIds.filter((item) => item !== comment_id)
+      )
     }
 
     if (!resp.ok) {
@@ -60,7 +67,7 @@ function CommentList() {
 
       let contentBasedReactions = {}
 
-      reactions.forEach(item => {
+      reactions.forEach((item) => {
         if (!contentBasedReactions[item.content]) {
           contentBasedReactions[item.content] = [item]
         } else {
@@ -82,10 +89,14 @@ function CommentList() {
     }
 
     if (update_id) {
-      let theCommentIndex = store.comments.findIndex(c => c.id === update_id)
+      let theCommentIndex = store.comments.findIndex((c) => c.id === update_id)
 
       if (theCommentIndex !== -1) {
-        let html = await renderMarkdown(store.comments[theCommentIndex].body, store.comments[theCommentIndex].id, store.comments[theCommentIndex].updated_at)
+        let html = await renderMarkdown(
+          store.comments[theCommentIndex].body,
+          store.comments[theCommentIndex].id,
+          store.comments[theCommentIndex].updated_at
+        )
         setStore('comments', theCommentIndex, 'bodyHTML', html)
       }
 
@@ -94,13 +105,14 @@ function CommentList() {
 
     setStore('gettingComments', true)
 
-    let resp = await githubApi(`https://api.github.com/repos/${store.owner}/${store.repo}/issues/${store.githubIssueId}/comments?per_page=${per_page}&page=${currentPage()}`)
+    let resp = await githubApi(
+      `https://api.github.com/repos/${store.owner}/${store.repo}/issues/${
+        store.githubIssueId
+      }/comments?per_page=${per_page}&page=${currentPage()}`
+    )
     let remoteComments = await resp.json()
     setStore('gettingComments', false)
-    setStore('comments', [
-      ...store.comments,
-      ...remoteComments
-    ])
+    setStore('comments', [...store.comments, ...remoteComments])
     setNewlyAddedCommentsCount(remoteComments.length)
 
     // get all reactions for loaded comments here
@@ -115,67 +127,87 @@ function CommentList() {
   }
 
   onMount(async () => {
-    await new Promise(r => setTimeout(r, 50))
+    await new Promise((r) => setTimeout(r, 50))
     await getComments()
   })
 
-  createEffect(on(() => store.shouldUpdateCommentId, async (id) => {
-    if (id) {
-      await getComments(id)
-      setStore('shouldUpdateCommentId', 0)
-    }
-  }))
-
-  createEffect(on(() => currentPage(), async (page) => {
-    if (page === 1) {
-      return
-    }
-    await getComments()
-    setStore('shouldUpdateCommentId', 0)
-  }))
-
-  return <>
-    <section data-name="comments" class="cwgi-pt-8">
-      <div class="cwgi-text-center cwgi-text-base cwgi-font-black cwgi-italic" classList={{
-        'cwgi-hidden': store.gettingComments && store.comments.length === 0
-      }}>
-        <span classList={{
-          'cwgi-hidden': store.comments.length !== 0
-        }} class="cwgi-font-normal cwgi-text-sm cwgi-opacity-80 cwgi-not-italic">
-          No comments for now
-        </span>
-      </div>
-
-      {
-        <div class="comments-list">
-          <For each={store.comments}>
-            {(c, i) => <CommentListItem index={i}></CommentListItem>}
-          </For>
-        </div>
+  createEffect(
+    on(
+      () => store.shouldUpdateCommentId,
+      async (id) => {
+        if (id) {
+          await getComments(id)
+          setStore('shouldUpdateCommentId', 0)
+        }
       }
+    )
+  )
 
-      <div classList={{
-        'cwgi-hidden': store.gettingComments || newlyAddedCommentsCount() < per_page
-      }}>
-        <button class="cwgi-bg-black dark:cwgi-bg-white cwgi-rounded-3xl cwgi-px-4 cwgi-py-2 cwgi-text-xs cwgi-text-white dark:cwgi-text-black cwgi-mx-auto cwgi-block" onClick={() => {
-          setCurrentPage(() => currentPage() + 1)
-        }}>Load More</button>
-      </div>
-    </section>
+  createEffect(
+    on(
+      () => currentPage(),
+      async (page) => {
+        if (page === 1) {
+          return
+        }
+        await getComments()
+        setStore('shouldUpdateCommentId', 0)
+      }
+    )
+  )
 
-    {store.gettingComments && <section data-name="loading screen" class="cwgi-pt-8">
-      <div class="cwgi-flex cwgi-text-sm cwgi-justify-center cwgi-items-center">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-loader-2 cwgi-animate-spin" width="24"
-               height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-               stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M12 3a9 9 0 1 0 9 9"/>
-          </svg>
+  return (
+    <>
+      <section data-name="comments" class="cwgi-pt-8">
+        <div
+          class="cwgi-text-center cwgi-text-base cwgi-font-black cwgi-italic"
+          classList={{
+            'cwgi-hidden': store.gettingComments && store.comments.length === 0
+          }}
+        >
+          <span
+            classList={{
+              'cwgi-hidden': store.comments.length !== 0
+            }}
+            class="cwgi-font-normal cwgi-text-sm cwgi-opacity-80 cwgi-not-italic"
+          >
+            No comments for now
+          </span>
         </div>
-      </div>
-    </section>}
-  </>
+
+        {
+          <div class="comments-list">
+            <For each={store.comments}>{(c, i) => <CommentListItem index={i}></CommentListItem>}</For>
+          </div>
+        }
+
+        <div
+          classList={{
+            'cwgi-hidden': store.gettingComments || newlyAddedCommentsCount() < per_page
+          }}
+        >
+          <button
+            class="cwgi-bg-black dark:cwgi-bg-white cwgi-rounded-3xl cwgi-px-4 cwgi-py-2 cwgi-text-xs cwgi-text-white dark:cwgi-text-black cwgi-mx-auto cwgi-block"
+            onClick={() => {
+              setCurrentPage(() => currentPage() + 1)
+            }}
+          >
+            Load More
+          </button>
+        </div>
+      </section>
+
+      {store.gettingComments && (
+        <section data-name="loading screen" class="cwgi-pt-8">
+          <div class="cwgi-flex cwgi-text-sm cwgi-justify-center cwgi-items-center">
+            <div>
+              <IconLoading></IconLoading>
+            </div>
+          </div>
+        </section>
+      )}
+    </>
+  )
 }
 
 export default CommentList

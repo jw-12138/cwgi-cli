@@ -1,7 +1,7 @@
 import useStore from './Store.jsx'
-import {For} from 'solid-js'
-import {githubApi} from './utils.jsx'
-import {produce} from 'solid-js/store'
+import { For } from 'solid-js'
+import { githubApi } from './utils.jsx'
+import { produce } from 'solid-js/store'
 
 const [store, setStore] = useStore()
 
@@ -30,8 +30,7 @@ let reactionButtons = [
  * @returns {number|null}
  */
 let userHasReactedToComment = function (comment_id, reaction) {
-
-  if(!store.isUserLoggedIn){
+  if (!store.isUserLoggedIn) {
     return null
   }
 
@@ -74,20 +73,30 @@ async function undoReactionToComment(comment_id, reaction_id, content) {
     console.log(e)
     return
   } finally {
-    setStore('reactingCommentID', store.reactingCommentID.filter(item => item !== comment_id))
+    setStore(
+      'reactingCommentID',
+      store.reactingCommentID.filter((item) => item !== comment_id)
+    )
   }
 
   if (resp.ok) {
-    setStore(produce(store => {
-      store.comments = store.comments.map(item => {
-        if (item.id === comment_id) {
-          item.reactions[content]--
-        }
-        return item
+    setStore(
+      produce((store) => {
+        store.comments = store.comments.map((item) => {
+          if (item.id === comment_id) {
+            item.reactions[content]--
+          }
+          return item
+        })
       })
-    }))
+    )
     // remove from commentReactionMap
-    setStore('commentReactionMap', comment_id, content, store.commentReactionMap[comment_id][content].filter(item => item.id !== reaction_id))
+    setStore(
+      'commentReactionMap',
+      comment_id,
+      content,
+      store.commentReactionMap[comment_id][content].filter((item) => item.id !== reaction_id)
+    )
   } else {
     // well, something went wrong
   }
@@ -100,7 +109,6 @@ async function undoReactionToComment(comment_id, reaction_id, content) {
  * @returns {Promise<boolean>}
  */
 async function makeReactionToComment(reaction, comment_id) {
-
   if (!store.isUserLoggedIn) {
     alert('Please log in first')
     return false
@@ -110,7 +118,10 @@ async function makeReactionToComment(reaction, comment_id) {
   if (reaction_id) {
     setStore('reactingCommentID', [...store.reactingCommentID, comment_id])
     await undoReactionToComment(comment_id, reaction_id, reaction)
-    setStore('reactingCommentID', store.reactingCommentID.filter(item => item !== comment_id))
+    setStore(
+      'reactingCommentID',
+      store.reactingCommentID.filter((item) => item !== comment_id)
+    )
     return false
   }
 
@@ -132,7 +143,10 @@ async function makeReactionToComment(reaction, comment_id) {
     alert('failed, please try again later')
     return false
   } finally {
-    setStore('reactingCommentID', store.reactingCommentID.filter(item => item !== comment_id))
+    setStore(
+      'reactingCommentID',
+      store.reactingCommentID.filter((item) => item !== comment_id)
+    )
   }
 
   if (resp.status === 200) {
@@ -145,51 +159,64 @@ async function makeReactionToComment(reaction, comment_id) {
     return false
   }
 
-  setStore(produce(store => {
-    store.comments = store.comments.map(item => {
-      if (item.id === comment_id) {
-        item.reactions[reaction]++
-      }
-      return item
+  setStore(
+    produce((store) => {
+      store.comments = store.comments.map((item) => {
+        if (item.id === comment_id) {
+          item.reactions[reaction]++
+        }
+        return item
+      })
     })
-  }))
+  )
 
   setStore('shouldListReactionsForCommentId', comment_id)
 }
 
 function commentReactions(props) {
-  const {comment} = props
-  return <>
-    {
-      store.editingCommentId !== comment.id && <div class="cwgi-mt-[-0.6rem] cwgi-relative cwgi-z-50 cwgi-flex cwgi-items-center" data-name="reactions" classList={{
-        'cwgi-opacity-50 cwgi-pointer-events-none': store.listingReactionCommentIds.includes(comment.id)
-      }}>
-        <For each={reactionButtons}>
-          {(button, index) =>
-            <button
-              onClick={() => makeReactionToComment(button.content, comment.id)}
-              class="cwgi-mr-1 disabled:cwgi-opacity-50 cwgi-text-xs cwgi-flex cwgi-items-center cwgi-rounded-full cwgi-px-2 cwgi-py-1 cwgi-max-h-[1.5rem] cwgi-group cwgi-text-neutral-800 dark:cwgi-text-neutral-50 dark:cwgi-bg-neutral-700 cwgi-bg-neutral-100 hover:cwgi-shadow dark:hover:cwgi-bg-white dark:hover:cwgi-text-neutral-900 hover:cwgi-bg-neutral-900 hover:cwgi-text-white"
-              disabled={store.reactingCommentID.includes(comment.id)}
-              title={button.means}>
-
-              <span
-                class="cwgi-transition-all cwgi-mr-1 cwgi-relative cwgi-top-0"
-                classList={{
-                  'cwgi-text-2xl cwgi-rotate-[-12deg] cwgi-top-[-.2rem]': userHasReactedToComment(comment.id, button.content)
-                }}
+  const { comment } = props
+  return (
+    <>
+      {store.editingCommentId !== comment.id && (
+        <div
+          class="cwgi-mt-[-0.6rem] cwgi-relative cwgi-z-50 cwgi-flex cwgi-items-center"
+          data-name="reactions"
+          classList={{
+            'cwgi-opacity-50 cwgi-pointer-events-none': store.listingReactionCommentIds.includes(comment.id)
+          }}
+        >
+          <For each={reactionButtons}>
+            {(button, index) => (
+              <button
+                onClick={() => makeReactionToComment(button.content, comment.id)}
+                class="cwgi-mr-1 disabled:cwgi-opacity-50 cwgi-text-xs cwgi-flex cwgi-items-center cwgi-rounded-full cwgi-px-2 cwgi-py-1 cwgi-max-h-[1.5rem] cwgi-group cwgi-text-neutral-800 dark:cwgi-text-neutral-50 dark:cwgi-bg-neutral-700 cwgi-bg-neutral-100 hover:cwgi-shadow dark:hover:cwgi-bg-white dark:hover:cwgi-text-neutral-900 hover:cwgi-bg-neutral-900 hover:cwgi-text-white"
+                disabled={store.reactingCommentID.includes(comment.id)}
+                title={button.means}
               >
-                {button.label}
-              </span>
+                <span
+                  class="cwgi-transition-all cwgi-mr-1 cwgi-relative cwgi-top-0"
+                  classList={{
+                    'cwgi-text-2xl cwgi-rotate-[-12deg] cwgi-top-[-.2rem]': userHasReactedToComment(
+                      comment.id,
+                      button.content
+                    )
+                  }}
+                >
+                  {button.label}
+                </span>
 
-              <span class="cwgi-font-mono">{
-                store.commentReactionMap[comment.id] && store.commentReactionMap[comment.id][button.content] ? store.commentReactionMap[comment.id][button.content].length : 0
-              }</span>
-
-            </button>}
-        </For>
-      </div>
-    }
-  </>
+                <span class="cwgi-font-mono">
+                  {store.commentReactionMap[comment.id] && store.commentReactionMap[comment.id][button.content]
+                    ? store.commentReactionMap[comment.id][button.content].length
+                    : 0}
+                </span>
+              </button>
+            )}
+          </For>
+        </div>
+      )}
+    </>
+  )
 }
 
 export default commentReactions
