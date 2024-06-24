@@ -76,11 +76,12 @@ function inputAndPreview() {
         ></textarea>
 
         <div class="
-        cwgi-pt-2
-        cwgi-text-xs
-        dark:cwgi-text-neutral-400
-        cwgi-text-neutral-500
-        cwgi-leading-5 ">This comment system is made with <a target="_blank" class="cwgi-text-black dark:cwgi-text-white" href="https://github.com/features/issues">GitHub Issues</a> by <a href="https://cwgi-docs.jw1.dev/" target="_blank" class="cwgi-text-black dark:cwgi-text-white">CWGI</a>, please follow the <a target="_blank" class="cwgi-text-black dark:cwgi-text-white" href="https://docs.github.com/en/site-policy/github-terms/github-community-code-of-conduct">GitHub Community Code of Conduct</a>.</div>
+          cwgi-pt-2
+          cwgi-text-xs
+          dark:cwgi-text-neutral-400
+          cwgi-text-neutral-500
+          cwgi-leading-5
+        ">This comment system is powered by <a href="https://cwgi-docs.jw1.dev/" target="_blank" class="cwgi-text-black dark:cwgi-text-white">CWGI</a>, made with <a target="_blank" class="cwgi-text-black dark:cwgi-text-white" href="https://github.com/features/issues">GitHub Issues</a>, please follow the <a target="_blank" class="cwgi-text-black dark:cwgi-text-white" href="https://docs.github.com/en/site-policy/github-terms/github-community-code-of-conduct">GitHub Community Code of Conduct</a>.</div>
 
         <div class="cwgi-text-center cwgi-mt-8 cwgi-flex cwgi-justify-center" classList={{
           'cwgi-hidden': store.gettingUser
@@ -115,9 +116,7 @@ function inputAndPreview() {
             Send
           </button>
         </div>
-
       </form>
-
     </section>
   </>
 }
