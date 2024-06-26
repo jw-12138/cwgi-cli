@@ -1,5 +1,4 @@
 export default function IconLoading(props = {}) {
-  console.log(props.visible)
   return <svg
     xmlns="http://www.w3.org/2000/svg"
     class={'cwgi-animate-spin ' + (props.class || ' ') + (props.visible === false ? ' cwgi-hidden' : '')}

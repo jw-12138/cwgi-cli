@@ -28,7 +28,9 @@ const [store, setStore] = createStore({
   owner: '',
   repo: '',
   clientId: '',
-  showReactions: true
+  showReactions: true,
+  markdownRenderingEndpoint: undefined,
+  renderMarkdown: undefined
 })
 
 export default function useStore() {

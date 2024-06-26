@@ -30,13 +30,18 @@ export default function Comments(props) {
   setStore('owner', props.options.owner)
   setStore('repo', props.options.repo)
   setStore('clientId', props.options.clientId)
+  setStore('markdownRenderingEndpoint', props.options.markdownRenderingEndpoint || (store.apiBase + '/markdown'))
 
-  if(props.options.proxy){
+  if (Object.keys(props.options).includes('remoteMarkdownRendering') && props.options.remoteMarkdownRendering === false) {
+    setStore('renderMarkdown', false)
+  }
+
+  if (props.options.proxy) {
     setStore('apiBase', props.options.proxy)
     setStore('proxy', props.options.proxy + '/proxy/')
   }
 
-  if(props.options.reactions === false){
+  if (props.options.reactions === false) {
     setStore('showReactions', false)
   }
 

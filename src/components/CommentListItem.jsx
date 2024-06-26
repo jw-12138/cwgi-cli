@@ -43,18 +43,53 @@ function CommentListItem(props) {
     document.getElementById('comment_textarea').focus()
   }
 
+  /**
+   * get mentions from comment string
+   * @param commentStr
+   */
+  function getMentions(commentStr) {
+    let mentions = commentStr.match(/@[a-zA-Z0-9-]+/g)
+    return mentions ? mentions.map((m) => m.replace('@', '')) : []
+  }
+
+  function isReplyToPreviousComment(commentStr){
+    let mentions = getMentions(commentStr)
+
+    if(!store.comments[props.index() - 1]){
+      return false
+    }
+
+    if(mentions.length === 0){
+      return false
+    }
+
+    if(mentions.includes(store.comments[props.index() - 1].user.login)){
+      setStore('comments', props.index() - 1, 'has_reply', true)
+      return true
+    }
+
+    return false
+  }
+
   return (
     <>
       <div
-        class="item cwgi-py-8 cwgi-transition-all relative"
+        class="item cwgi-transition-all cwgi-relative"
+        classList={{
+          'cwgi-py-8': !isReplyToPreviousComment(comment.body),
+          'cwgi-pt-0 cwgi-pl-6': isReplyToPreviousComment(comment.body)
+        }}
         id={comment.id}
         style={{
-          'padding-bottom': store.showReactions ? '2rem' : '0',
+          'padding-bottom': store.showReactions ? (comment.has_reply ? '1rem' : '2rem') : '0',
           'pointer-events': store.deletingId === comment.id ? 'none' : 'auto',
           overflow: store.comments[props.index()].aboutToGetDeleted ? 'hidden' : 'visible',
           animation: 'comment_delete_' + comment.id + ' .3s ease forwards'
         }}
       >
+        {isReplyToPreviousComment(comment.body) && <div class="cwgi-absolute -cwgi-left-0.5 cwgi-top-2.5">
+          <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="cwgi-opacity-50 cwgi-relative -cwgi-left-0.5 cwgi-top-0.5"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 6v6a3 3 0 0 0 3 3h10l-4 -4m0 8l4 -4" /></svg>
+        </div>}
         <div class="user cwgi-flex cwgi-mt-2 cwgi-w-full cwgi-relative">
           <div class="outer-box cwgi-flex cwgi-justify-between cwgi-w-full">
             <a

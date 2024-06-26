@@ -49,6 +49,20 @@ async function githubApi(endpoint, init = {}) {
   return await fetch(proxy + endpoint, _init)
 }
 
+// warp two line breaks to <p> and one line break to <br>
+function warpParagraphs(markdown) {
+  return markdown
+    .split('\n\n')
+    .map((p) => {
+      return `<p>${p.replace(/\n/g, '<br>')}</p>`
+    })
+    .join('')
+}
+
+function basicMarkdownToHtml(markdown) {
+  return warpParagraphs(markdown)
+}
+
 /**
  * render markdown to html
  * @param markdown
@@ -57,6 +71,10 @@ async function githubApi(endpoint, init = {}) {
  * @returns {Promise<string>}
  */
 async function renderMarkdown(markdown, id = -1, updated_at = '') {
+  if(store.renderMarkdown === false){
+    return basicMarkdownToHtml(markdown)
+  }
+
   let key = ''
   if (id && updated_at) {
     let timestamp = dayjs(updated_at).unix()
@@ -70,14 +88,14 @@ async function renderMarkdown(markdown, id = -1, updated_at = '') {
   }
 
   try {
-    let api = store.apiBase + '/markdown'
+    let api = store.markdownRenderingEndpoint
     let headers = {
       'Content-Type': 'plain/text'
     }
     let body = markdown
     let fetchFun = fetch
 
-    if (!store.apiBase) {
+    if (!store.markdownRenderingEndpoint || !store.apiBase || !api.startsWith('https://')) {
       api = 'https://api.github.com/markdown'
       headers = {
         'Content-Type': 'application/json',
@@ -112,8 +130,8 @@ async function renderMarkdown(markdown, id = -1, updated_at = '') {
     return remoteText
   } catch (e) {
     console.log(e)
-    return '<p>Failed to render markdown</p>'
+    return basicMarkdownToHtml(markdown)
   }
 }
 
-export { githubApi, renderMarkdown, auth_api }
+export {githubApi, renderMarkdown, auth_api}
