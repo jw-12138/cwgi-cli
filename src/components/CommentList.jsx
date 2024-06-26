@@ -1,7 +1,7 @@
 import useStore from './Store.jsx'
-import { createEffect, createSignal, For, on, onMount } from 'solid-js'
+import {createEffect, createSignal, For, on, onMount} from 'solid-js'
 import CommentListItem from './CommentListItem.jsx'
-import { githubApi, renderMarkdown } from './utils.jsx'
+import {githubApi, renderMarkdown} from './utils.jsx'
 import IconLoading from './IconLoading.jsx'
 
 const [store, setStore] = useStore()
@@ -120,14 +120,17 @@ function CommentList() {
       setStore('shouldListReactionsForCommentId', store.comments[i].id)
 
       if (store.comments[i].body) {
-        let html = await renderMarkdown(store.comments[i].body, store.comments[i].id, store.comments[i].updated_at)
-        setStore('comments', i, 'bodyHTML', html)
+        let _r = async function () {
+          let html = await renderMarkdown(store.comments[i].body, store.comments[i].id, store.comments[i].updated_at)
+          setStore('comments', i, 'bodyHTML', html)
+        }
+        _r() // no await here, so all comments will be rendered in parallel
       }
     }
   }
 
   onMount(async () => {
-    await new Promise((r) => setTimeout(r, 50))
+    await new Promise((r) => setTimeout(r, 20))
     await getComments()
   })
 

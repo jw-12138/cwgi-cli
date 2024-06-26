@@ -58,7 +58,7 @@ function inputAndPreview() {
       return 'Please login first'
     }
 
-    return 'Ask a question or leave a comment'
+    return 'Leave a comment here :)'
   }
 
   return (
@@ -85,7 +85,7 @@ function inputAndPreview() {
           cwgi-leading-5
         "
           >
-            This comment system is powered by{' '}
+            Powered by{' '}
             <a href="https://cwgi-docs.jw1.dev/" target="_blank" class="cwgi-text-black dark:cwgi-text-white">
               CWGI
             </a>
