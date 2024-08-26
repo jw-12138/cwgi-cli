@@ -8,7 +8,7 @@ const [store, setStore] = useStore()
 
 function LoginPanel() {
   const authUrl = `${auth_api}?state=${Date.now()}&client_id=${store.clientId}&redirect_uri=${encodeURIComponent(
-    `https://cwgi.jw1.dev/callback?r=${location.href}`
+    `${store.apiBase || 'https://cwgi.jw1.dev'}/callback?r=${location.href}`
   )}`
 
   // popup
