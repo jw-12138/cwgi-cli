@@ -7,10 +7,6 @@
   Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', serif;
   tab-size: 2;
 
-  a {
-    @apply cwgi-text-black dark:cwgi-text-white cwgi-no-underline hover:cwgi-text-white dark:hover:cwgi-text-black;
-  }
-
   @apply cwgi-text-neutral-700 dark:cwgi-text-neutral-200 cwgi-min-w-[320px];
 
   @media (prefers-color-scheme: dark) {
@@ -65,6 +61,8 @@
   img.cwgi-user-avatar {
     margin-bottom: 0;
   }
+
+  @apply cwgi-text-black dark:cwgi-text-white cwgi-no-underline;
 
   &:hover {
     @apply cwgi-bg-transparent cwgi-text-black dark:cwgi-text-white;
