@@ -8,6 +8,7 @@ import CommentList from './components/CommentList.jsx'
 import './style/main.scss'
 
 const [store, setStore] = useStore()
+const version = '2024-08-27'
 
 export default function Comments(props) {
   setStore('githubIssueId', props.githubIssueId)
@@ -106,7 +107,7 @@ export default function Comments(props) {
   })
 
   return <>
-    {props.githubIssueId && <div data-name="comments" id="cwgi_comments" class="cwgi-mb-4 cwgi-max-w-[46rem] cwgi-mx-auto">
+    {props.githubIssueId && <div data-name="comments" id="cwgi_comments" version={version} class="cwgi-mb-4 cwgi-max-w-[46rem] cwgi-mx-auto">
       <div class="cwgi-h-[1px]">
       </div>
 
