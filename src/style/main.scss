@@ -8,7 +8,7 @@
   tab-size: 2;
 
   a {
-    @apply cwgi-text-black dark:cwgi-text-white cwgi-no-underline;
+    @apply cwgi-text-black dark:cwgi-text-white cwgi-no-underline hover:cwgi-text-white hover:dark:cwgi-text-black;
   }
 
   @apply cwgi-text-neutral-700 dark:cwgi-text-neutral-200 cwgi-min-w-[320px];
