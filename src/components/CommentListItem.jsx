@@ -95,7 +95,7 @@ function CommentListItem(props) {
             <a
               href={comment.html_url}
               target="_blank"
-              class="user-info cwgi-flex cwgi-items-center cwgi-text-sm cwgi-group"
+              class="user-info cwgi-flex cwgi-items-center cwgi-text-sm cwgi-group cwgi-text-black dark:cwgi-text-white cwgi-no-underline"
             >
               <img
                 src={
