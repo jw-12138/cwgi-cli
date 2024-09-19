@@ -8,7 +8,7 @@ function Loading(props = {}) {
     <>
       {store.gettingUser && (
         <section data-name="user loading">
-          <div class="cwgi-flex cwgi-text-sm cwgi-justify-center cwgi-items-center">
+          <div class="cwgi-flex cwgi-text-sm cwgi-justify-center cwgi-items-center cwgi-h-[32px]">
             <div>
               <IconLoading/>
             </div>
