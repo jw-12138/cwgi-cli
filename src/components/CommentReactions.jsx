@@ -189,7 +189,7 @@ function commentReactions(props) {
             {(button, index) => (
               <button
                 onClick={() => makeReactionToComment(button.content, comment.id)}
-                class="cwgi-mr-1 disabled:cwgi-opacity-50 cwgi-text-xs cwgi-flex cwgi-items-center cwgi-rounded-full cwgi-px-2 cwgi-py-1 cwgi-max-h-[1.5rem] cwgi-group cwgi-text-neutral-800 dark:cwgi-text-neutral-50 dark:cwgi-bg-neutral-700 cwgi-bg-neutral-100 hover:cwgi-shadow dark:hover:cwgi-bg-white dark:hover:cwgi-text-neutral-900 hover:cwgi-bg-neutral-900 hover:cwgi-text-white"
+                class="cwgi-mr-1 disabled:cwgi-opacity-50 cwgi-text-xs cwgi-flex cwgi-items-center cwgi-rounded-full cwgi-px-2 cwgi-py-1 cwgi-max-h-[1.5rem] cwgi-group cwgi-text-neutral-800 dark:cwgi-text-neutral-50 dark:cwgi-bg-white/10 cwgi-bg-black/5 cwgi-backdrop-blur hover:cwgi-shadow dark:hover:cwgi-bg-white dark:hover:cwgi-text-neutral-900 hover:cwgi-bg-neutral-900 hover:cwgi-text-white"
                 disabled={store.reactingCommentID.includes(comment.id)}
                 title={button.means}
               >

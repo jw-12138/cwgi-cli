@@ -88,8 +88,9 @@ function LoginPanel() {
               cwgi-px-2
               cwgi-py-2
               cwgi-rounded-[1rem]
-              dark:cwgi-bg-neutral-800
-              cwgi-bg-white
+              dark:cwgi-bg-white/10
+              cwgi-bg-black/5
+              cwgi-backdrop-blur
               cwgi-left-1/2
               cwgi-bottom-[37px]
               cwgi-popup-border
@@ -101,7 +102,7 @@ function LoginPanel() {
                 }}
               >
                 <button
-                  class="cwgi-text-xs cwgi-px-2 cwgi-py-2 cwgi-text-center dark:hover:cwgi-bg-white/10 hover:cwgi-bg-black/10 hover:cwgi-shadow cwgi-w-full cwgi-rounded-[.5rem] cwgi-flex cwgi-items-center cwgi-justify-center"
+                  class="cwgi-text-xs cwgi-px-2 cwgi-py-2 cwgi-text-center dark:hover:cwgi-bg-black/50 hover:cwgi-bg-white/90 cwgi-w-full cwgi-rounded-[.5rem] cwgi-flex cwgi-items-center cwgi-justify-center cwgi-transition-all"
                   onClick={goToUser}
                 >
                   <IconGitHub class={'cwgi-w-4 cwgi-h-4 cwgi-mr-2'}/>
@@ -109,7 +110,7 @@ function LoginPanel() {
                 </button>
 
                 <button
-                  class="cwgi-text-xs cwgi-px-2 cwgi-py-2 cwgi-text-center hover:cwgi-bg-red-500 hover:cwgi-text-white hover:cwgi-shadow focus:cwgi-bg-red-500 focus:cwgi-text-white cwgi-w-full cwgi-rounded-[.5rem] cwgi-flex cwgi-items-center cwgi-justify-center"
+                  class="cwgi-text-xs cwgi-px-2 cwgi-py-2 cwgi-text-center hover:cwgi-bg-red-500 hover:cwgi-text-white hover:cwgi-shadow focus:cwgi-bg-red-500 focus:cwgi-text-white cwgi-w-full cwgi-rounded-[.5rem] cwgi-flex cwgi-items-center cwgi-justify-center cwgi-transition-all"
                   onClick={logout}
                 >
                   <svg
@@ -135,7 +136,7 @@ function LoginPanel() {
             <div
               onMouseEnter={() => setStore('mouseIsInsideWindow', true)}
               onMouseLeave={() => setStore('mouseIsInsideWindow', false)}
-              class="user-window dark:cwgi-bg-neutral-800 cwgi-bg-neutral-100 cwgi-h-[32px] cwgi-items-center cwgi-inline-block cwgi-border-none cwgi-relative cwgi-z-10 cwgi-rounded-full hover:cwgi-shadow-xl cwgi-transition-all "
+              class="user-window dark:cwgi-bg-white/10 cwgi-backdrop-blur cwgi-bg-black/5 cwgi-h-[32px] cwgi-items-center cwgi-inline-block cwgi-border-none cwgi-relative cwgi-z-10 cwgi-rounded-full hover:cwgi-shadow-xl cwgi-transition-all"
             >
               {store.isUserLoggedIn && (
                 <button

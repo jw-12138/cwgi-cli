@@ -82,7 +82,7 @@ function commentEditingArea(props) {
           <form action="javascript:" onsubmit={confirmEditing}>
             <div>
               <textarea
-                class="cwgi-rounded-2xl cwgi-block cwgi-px-4 cwgi-py-4 cwgi-font-mono cwgi-border-none focus:cwgi-shadow-2xl dark:cwgi-bg-neutral-800 cwgi-bg-zinc-100 cwgi-w-full cwgi-resize-y cwgi-min-h-[6rem] cwgi-text-sm cwgi-rounded-br-[6px]"
+                class="cwgi-rounded-2xl cwgi-block cwgi-px-4 cwgi-py-4 cwgi-font-mono cwgi-border-none focus:cwgi-shadow dark:cwgi-bg-white/10 cwgi-bg-black/5 cwgi-w-full cwgi-resize-y cwgi-min-h-[6rem] cwgi-text-sm cwgi-rounded-br-[6px] cwgi-outline-0 focus:cwgi-outline-0 cwgi-ring-0 cwgi-ring-neutral-500 focus:cwgi-ring-offset-2 focus:cwgi-ring-offset-white focus:cwgi-ring-2 dark:focus:cwgi-ring-offset-neutral-900 dark:focus:cwgi-ring-neutral-400 dark:focus:cwgi-ring-2 cwgi-backdrop-blur cwgi-placeholder-neutral-500 dark:cwgi-placeholder-neutral-100 cwgi-popup-border"
                 required
                 value={store.editingCommentContent}
                 oninput={(e) => setStore('editingCommentContent', e.target.value)}
@@ -97,7 +97,7 @@ function commentEditingArea(props) {
                   setStore('editingCommentContent', '')
                 }}
                 disabled={store.submittingEditedComment}
-                class="cwgi-rounded-full cwgi-text-sm dark:cwgi-bg-neutral-700 cwgi-bg-neutral-200 cwgi-px-4 cwgi-py-2 cwgi-flex cwgi-items-center disabled:cwgi-opacity-50"
+                class="cwgi-rounded-full cwgi-text-sm dark:cwgi-bg-white/10 cwgi-bg-black/10 dark:cwgi-text-white cwgi-text-black/90 cwgi-backdrop-blur cwgi-px-4 cwgi-py-2 cwgi-flex cwgi-items-center disabled:cwgi-opacity-50"
               >
                 <IconX classList={'cwgi-w-4 cwgi-h-4 cwgi-mr-1'}></IconX>
                 Cancel
@@ -105,7 +105,7 @@ function commentEditingArea(props) {
               <button
                 type="submit"
                 disabled={store.submittingEditedComment}
-                class="cwgi-rounded-full cwgi-text-sm dark:cwgi-bg-white dark:cwgi-text-black cwgi-bg-neutral-800 cwgi-text-white cwgi-px-4 cwgi-py-2 cwgi-flex cwgi-items-center cwgi-ml-2 disabled:cwgi-opacity-50"
+                class="cwgi-rounded-full cwgi-text-sm dark:cwgi-bg-white/90 dark:cwgi-text-black cwgi-text-white cwgi-bg-black/70 cwgi-backdrop-blur cwgi-px-4 cwgi-py-2 cwgi-flex cwgi-items-center cwgi-ml-2 disabled:cwgi-opacity-50"
               >
                 <IconLoading class={'cwgi-mr-1'} width={16} height={16} visible={store.submittingEditedComment}></IconLoading>
                 <svg

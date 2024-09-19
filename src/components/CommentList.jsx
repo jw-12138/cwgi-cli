@@ -190,7 +190,7 @@ function CommentList() {
           }}
         >
           <button
-            class="cwgi-bg-black dark:cwgi-bg-white cwgi-rounded-3xl cwgi-px-4 cwgi-py-2 cwgi-text-xs cwgi-text-white dark:cwgi-text-black cwgi-mx-auto cwgi-block"
+            class="cwgi-bg-black/70 dark:cwgi-bg-white/90 cwgi-backdrop-blur cwgi-rounded-3xl cwgi-px-4 cwgi-py-2 cwgi-text-xs cwgi-text-white dark:cwgi-text-black cwgi-mx-auto cwgi-block"
             onClick={() => {
               setCurrentPage(() => currentPage() + 1)
             }}

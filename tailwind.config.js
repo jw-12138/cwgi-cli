@@ -11,7 +11,11 @@ export default {
   darkMode: ['selector', '[data-mode="dark"]'],
   prefix: 'cwgi-',
   theme: {
-    extend: {},
+    extend: {
+      opacity: {
+        5: '0.05',
+      }
+    },
   },
   plugins: [
     scopedPreflightStyles({

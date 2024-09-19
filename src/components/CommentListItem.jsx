@@ -131,7 +131,7 @@ function CommentListItem(props) {
                     'cwgi-hidden': store.user.login !== comment.user.login
                   }}
                   aria-label="More actions"
-                  class="dark:cwgi-bg-neutral-800 cwgi-bg-neutral-200 cwgi-rounded-full cwgi-w-8 cwgi-h-8 cwgi-overflow-hidden cwgi-flex cwgi-items-center cwgi-justify-center"
+                  class="dark:cwgi-bg-white/10 cwgi-backdrop-blur cwgi-bg-black/5 cwgi-rounded-full cwgi-w-8 cwgi-h-8 cwgi-overflow-hidden cwgi-flex cwgi-items-center cwgi-justify-center"
                   onclick={(e) => {
                     e.stopPropagation()
                     toggleCommentActionDropdown(comment.id)
@@ -161,7 +161,7 @@ function CommentListItem(props) {
                 </button>
                 <button
                   aria-label={'Mention this user'}
-                  class="cwgi-h-[30px] cwgi-leading-[28px] cwgi-px-2 cwgi-rounded-full cwgi-bg-neutral-100 hover:cwgi-bg-neutral-800 hover:cwgi-text-white dark:cwgi-bg-neutral-800 dark:cwgi-text-white dark:hover:cwgi-text-black dark:hover:cwgi-bg-neutral-200 cwgi-text-xs"
+                  class="cwgi-h-[30px] cwgi-leading-[28px] cwgi-px-2 cwgi-rounded-full cwgi-bg-black/5 cwgi-backdrop-blur dark:cwgi-bg-white/10 dark:cwgi-text-white cwgi-text-xs"
                   onClick={() => mention(comment.user.login)}
                   classList={{
                     'cwgi-hidden': store.user.login === comment.user.login

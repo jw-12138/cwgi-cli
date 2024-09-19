@@ -66,7 +66,7 @@ function CommentActionPanel(props) {
       {store.commentActionDropdown === comment.id && (
         <div
           data-name="more actions"
-          class="cwgi-absolute cwgi-z-[500] cwgi-top-[2.25rem] cwgi-right-0 cwgi-rounded-[1rem] dark:cwgi-bg-neutral-800 cwgi-px-2 cwgi-py-2 cwgi-bg-neutral-100 cwgi-border-[1px] cwgi-shadow-xl cwgi-popup-border"
+          class="cwgi-absolute cwgi-z-[500] cwgi-top-[2.25rem] cwgi-right-0 cwgi-rounded-[1rem] dark:cwgi-bg-white/20 cwgi-px-2 cwgi-py-2 cwgi-bg-black/5 cwgi-border-[1px] cwgi-shadow-xl cwgi-popup-border cwgi-backdrop-blur"
           style={{
             animation: '0.15s ease 0s 1 normal none running slideUp'
           }}
@@ -78,7 +78,7 @@ function CommentActionPanel(props) {
               setStore('commentActionDropdown', '')
             }}
             disabled={store.deletingId === comment.id}
-            class="cwgi-py-2 cwgi-px-4 cwgi-rounded-[.5rem] cwgi-w-full cwgi-text-xs cwgi-flex cwgi-transition-all dark:hover:cwgi-bg-white/10 hover:cwgi-bg-black/10"
+            class="cwgi-py-2 cwgi-px-4 cwgi-rounded-[.5rem] cwgi-w-full cwgi-text-xs cwgi-flex cwgi-transition-all dark:hover:cwgi-bg-black/50 hover:cwgi-bg-white/90"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +105,7 @@ function CommentActionPanel(props) {
               'cwgi-bg-red-500 cwgi-text-white dark:cwgi-bg-red-500 dark:cwgi-text-white':
                 store.deletingId === comment.id
             }}
-            class="cwgi-py-2 cwgi-px-4 cwgi-rounded-[.5rem] cwgi-w-full hover:cwgi-bg-red-500 hover:cwgi-text-white dark:cwgi-bg-neutral-800 dark:cwgi-text-white cwgi-text-xs cwgi-flex cwgi-transition-all"
+            class="cwgi-py-2 cwgi-px-4 cwgi-rounded-[.5rem] cwgi-w-full hover:cwgi-bg-red-500 hover:cwgi-text-white dark:cwgi-text-white cwgi-text-xs cwgi-flex cwgi-transition-all"
           >
             <svg
               classList={{

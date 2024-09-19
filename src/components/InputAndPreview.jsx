@@ -68,7 +68,7 @@ function inputAndPreview() {
           <textarea
             disabled={store.gettingUser || !store.isUserLoggedIn}
             id="comment_textarea"
-            class="cwgi-rounded-2xl cwgi-block cwgi-px-4 cwgi-py-4 cwgi-font-mono cwgi-border-none cwgi-appearance-none cwgi-shadow dark:cwgi-bg-white/10 cwgi-bg-[rgba(0,0,0,.05)] cwgi-w-full cwgi-resize-y cwgi-text-sm cwgi-min-h-[5rem] cwgi-rounded-br-[6px] cwgi-outline-0 focus:cwgi-outline-0 cwgi-ring-0 cwgi-ring-neutral-500 focus:cwgi-ring-offset-2 focus:cwgi-ring-offset-white focus:cwgi-ring-2 dark:focus:cwgi-ring-offset-neutral-900 dark:focus:cwgi-ring-neutral-400 dark:focus:cwgi-ring-2"
+            class="cwgi-rounded-2xl cwgi-block cwgi-px-4 cwgi-py-4 cwgi-font-mono cwgi-border-none cwgi-appearance-none cwgi-shadow dark:cwgi-bg-white/10 cwgi-bg-[rgba(0,0,0,.05)] cwgi-w-full cwgi-resize-y cwgi-text-sm cwgi-min-h-[5rem] cwgi-rounded-br-[6px] cwgi-outline-0 focus:cwgi-outline-0 cwgi-ring-0 cwgi-ring-neutral-500 focus:cwgi-ring-offset-2 focus:cwgi-ring-offset-white focus:cwgi-ring-2 dark:focus:cwgi-ring-offset-neutral-900 dark:focus:cwgi-ring-neutral-400 dark:focus:cwgi-ring-2 cwgi-backdrop-blur cwgi-placeholder-neutral-500 dark:cwgi-placeholder-neutral-100"
             required
             name="comment"
             placeholder={textareaPlaceHolder()}
@@ -80,8 +80,8 @@ function inputAndPreview() {
             class="
           cwgi-pt-2
           cwgi-text-xs
-          dark:cwgi-text-neutral-400
-          cwgi-text-neutral-500
+          dark:cwgi-text-white/50
+          cwgi-text-black/50
           cwgi-leading-5
         "
           >

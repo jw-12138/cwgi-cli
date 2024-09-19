@@ -47,7 +47,7 @@
 }
 
 .cwgi-popup-border {
-  @apply cwgi-border dark:cwgi-border-neutral-700 cwgi-border-neutral-200 cwgi-border-l-neutral-100 cwgi-border-t-neutral-100 dark:cwgi-border-l-neutral-600 dark:cwgi-border-t-neutral-600;
+  @apply cwgi-border dark:cwgi-border-white/10 cwgi-border-black/20 cwgi-border-t-black/10 cwgi-border-l-black/10 dark:cwgi-border-t-white/20 dark:cwgi-border-l-white/20;
 }
 
 .cwgi-user-info {
