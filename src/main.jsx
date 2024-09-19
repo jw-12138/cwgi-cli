@@ -53,7 +53,7 @@ export function init(githubIssueId = false, options = {}) {
 document.addEventListener('DOMContentLoaded', () => {
   if (import.meta.env.DEV === true) {
     init(111, {
-      darkMode: false,
+      darkMode: undefined,
       owner: 'jw-12138',
       repo: 'jw-12138.github.io',
       clientId: 'Iv1.717c117523f74671',
